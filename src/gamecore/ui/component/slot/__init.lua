@@ -1,0 +1,7 @@
+require "gamecore.ui.component.slot.SlotBase"
+require "gamecore.ui.component.slot.SlotMove"
+require "gamecore.ui.component.slot.SlotItem"
+require "gamecore.ui.component.slot.SlotBag"
+-- require "ui.component.slot.SlotPet"
+-- require "ui.component.slot.SlotSkill"
+-- require "ui.component.slot.SlotXianYin"

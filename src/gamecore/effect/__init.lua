@@ -1,0 +1,1 @@
+require "gamecore.effect.EffectManage"

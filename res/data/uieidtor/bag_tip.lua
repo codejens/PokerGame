@@ -1,0 +1,110 @@
+bag_tip = {
+	img_n="",
+	child={
+{	img_n="sui/common/tipsPanel.png",
+	flip={	false,		false,	},
+	parent="win_root",
+	class="SPanel",
+	is_nine=true,
+	name="panel_1",
+	pos={	"0",
+	"0",
+},
+	zOrder=1,		child={
+{	img_n="sui/common/close.png",
+	name="btn_close",
+	pos={	423,		261,	},
+	parent="panel_1",
+	class="SButton",
+	zOrder=1,		size={	"62",
+	"57",
+},
+},
+
+{	str="#c501f04是否花费xx天珠，解锁5格背包?",
+	name="label_1",
+	parent="panel_1",
+	align=1,		class="SLabel",
+	fontsize="24",
+	pos={	87,		200.5,	},
+},
+
+{	img_n="sui/common/num_bg.png",
+	flip={	false,		false,	},
+	parent="panel_1",
+	class="SPanel",
+	is_nine=true,
+	name="num_bg",
+	pos={	196,		138,	},
+	zOrder=1,		child={
+{	img_n="sui/common/yuanbao2.png",
+	flip={	false,		false,	},
+	parent="num_bg",
+	class="SImage",
+	is_nine=false,
+	name="img_1",
+	pos={	-11,		-2,	},
+	zOrder=1,		size={	"30",
+	"30",
+},
+},
+
+{	str="#c501f049999999999",
+	name="label_2",
+	parent="num_bg",
+	align=1,		class="SLabel",
+	fontsize="18",
+	pos={	23,		3.5,	},
+},
+},
+	size={
+"135",
+
+"27",
+},
+},
+
+{	pos={	184,		46,	},
+	img_n="sui/common/btn_1.png",
+	name="btn_2",
+	child={
+{	str="#ca65813确认",
+	name="label_3",
+	parent="btn_2",
+	align=1,		class="SLabel",
+	fontsize="24",
+	pos={	48,		19.5,	},
+},
+},
+	parent="panel_1",
+	class="SButton",
+	zOrder=1,		size={
+"144",
+
+"60",
+},
+},
+},
+	size={
+"500",
+
+"325",
+},
+},
+},
+	class="SPanel",
+	is_nine=true,
+	name="win_root",
+	size={
+"500",
+
+"325",
+},
+	parent="ui_root",
+	zOrder=1,		pos={
+"220",
+
+"167",
+},
+
+}

@@ -1,0 +1,127 @@
+ue_login_win = {
+	img_n="",
+	child={
+{	img_n="nopack/login_bg.png",
+	flip={	false,		false,	},
+	parent="win_root",
+	class="SPanel",
+	is_nine=false,
+	name="panel_1",
+	pos={	"0",
+	"0",
+},
+	child={
+{	img_n="ui/login/light.png",
+	flip={	false,		false,	},
+	parent="panel_1",
+	class="SImage",
+	is_nine=false,
+	name="img_1",
+	size={	"392",
+	"410",
+},
+	zOrder=1,		pos={	58,		134,	},
+},
+
+{	img_n="ui/login/log.png",
+	flip={	false,		false,	},
+	parent="panel_1",
+	class="SImage",
+	is_nine=false,
+	name="img_2",
+	zOrder=1,		pos={	91,		199,	},
+	size={	"318",
+	"272",
+},
+},
+
+{	child={
+{	img_n="ui/login/icon_1.png",
+	flip={	false,		false,	},
+	parent="btn_zhanghao",
+	class="SImage",
+	is_nine=false,
+	name="img_3",
+	zOrder=1,		pos={	36,		20,	},
+	size={	"36",
+	"42",
+},
+},
+
+{	img_n="ui/login/zhanghaodenglu.png",
+	flip={	false,		false,	},
+	parent="btn_zhanghao",
+	class="SImage",
+	is_nine=false,
+	name="img_4",
+	zOrder=1,		pos={	85,		26,	},
+	size={	"214",
+	"34",
+},
+},
+},
+	
+	img_n="ui/login/btn_1.png",
+	name="btn_zhanghao",
+	pos={
+537,	
+391,	},
+	parent="panel_1",
+	class="SButton",
+	zOrder=1,		size={
+"332",
+
+"83",
+},
+},
+
+{	child={
+{	img_n="ui/login/youkedenglu.png",
+	flip={	false,		false,	},
+	parent="btn_youke",
+	class="SImage",
+	is_nine=false,
+	name="img_5",
+	zOrder=1,		pos={	28,		20,	},
+	size={	"282",
+	"42",
+},
+},
+},
+	img_n="ui/login/btn_2.png",
+	name="btn_youke",
+	pos={
+539,	
+264,	},
+	parent="panel_1",
+	class="SButton",
+	zOrder=1,		size={
+"332",
+
+"83",
+},
+},
+},
+	zOrder=1,		size={
+"960",
+
+"640",
+},
+},
+},
+	class="SPanel",
+	is_nine=true,
+	name="win_root",
+	pos={
+"0",
+
+"0",
+},
+	zOrder=1,		parent="ui_root",
+	size={
+"960",
+
+"640",
+},
+
+}

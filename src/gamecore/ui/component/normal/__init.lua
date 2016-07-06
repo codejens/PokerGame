@@ -1,0 +1,5 @@
+require 'gamecore.ui.component.normal.GroupButton'
+require 'gamecore.ui.component.normal.TimerLabel'
+require 'gamecore.ui.component.normal.FightingLabel'
+require 'gamecore.ui.component.normal.ProgressExpand'
+require 'gamecore.ui.component.normal.ClickMenu'

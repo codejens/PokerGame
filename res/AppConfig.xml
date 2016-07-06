@@ -1,0 +1,32 @@
+<appConfigRoot>
+    <entry_script>src/main</entry_script>
+	<designResolutionWidth>960</designResolutionWidth>
+	<designResolutionHeight>640</designResolutionHeight>
+	<windowWidth>960</windowWidth>
+	<windowHeight>640</windowHeight>
+	<dbg_host>127.0.0.1</dbg_host>
+	<dbg_port>8314</dbg_port>
+    <current_version>1.00.00</current_version>
+    <patch_version>1.00.00</patch_version>
+    <fixStorage>false</fixStorage>
+    <language>CN</language>
+	<!-- 是否显示未开启服务器 -->
+	<show_not_open_server>true</show_not_open_server>    
+	
+	<!-- 内网测试服 连接设置  -->
+	<serverFilter>19,23,69,130,70,131,113,163,132,133,126,163,136,114,139</serverFilter>
+	<isJsonServerList>false</isJsonServerList>
+	<server_list>http://192.168.25.35:8080/TencentOpen/</server_list>
+	<entry_url></entry_url>
+	<resourcePath>resource</resourcePath>
+	<no_update>true</no_update>
+	
+	<!-- 平台打点平台类型 -->
+	<download_source>noplatform</download_source>
+	<!-- 平台入口，包括登录和支付判断 -->
+	<platformInterface>noplatform</platformInterface>
+	<VK_F1>inventory</VK_F1>
+	<VK_F2>mountsWin</VK_F2>
+	<VK_F3>forgeWin</VK_F3>
+	<test_mode>false</test_mode>
+</appConfigRoot>

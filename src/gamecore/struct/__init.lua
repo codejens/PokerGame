@@ -1,0 +1,8 @@
+require "gamecore.struct.UserRole"
+require "gamecore.struct.OtherEntity"
+require "gamecore.struct.PlayerEntity"
+require "gamecore.struct.StructBase"
+require "gamecore.struct.ComAttriStruct"
+require "gamecore.struct.AdditionAttrisStruct" 
+require "gamecore.struct.UserItem"
+require "gamecore.struct.UserSkill"
