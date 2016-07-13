@@ -21,9 +21,9 @@ protocol_func_map_client[1] = {
 }
 
 local function get_player_info(np,num)
-    local have_pos = {5,1,3,4,6,2,8,7,9}
+    local have_pos = {5,1,3,4,6,8,7,9}
     local array = {}
-    array.id = val_1_init + num
+    array.id = 1000 + num
     array.sex = math.random(0,1)
     array.name = "赌圣_" .. num
     array.yuanbao = math.random(0,10000)

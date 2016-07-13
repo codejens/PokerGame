@@ -101,6 +101,13 @@ function GUIManager:find_window( name )
 	return self._active_windows[name]
 end
 
+function GUIManager:update_window(win_name,...)
+	local win = self:find_window(win_name)
+	if win then
+		win:update(...)
+	end
+end
+
 function GUIManager:get_ui_root(  )
 	return self._ui_root
 end
