@@ -27,4 +27,12 @@ function GameModel:get_cur_player_array()
 	return self.cur_player_array
 end
 
+function GameModel:add_player(player_info)
+	self.cur_player_array[player_info.index] = player_info
+end
+
+function GameModel:delete_player(index)
+	self.cur_player_array[index] = nil
+end
+
 GameModel:init()

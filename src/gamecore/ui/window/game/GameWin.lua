@@ -3,6 +3,7 @@ GameWin = simple_class(GUIWindow)
 
 function GameWin:__init()
 	print("MainWin:__init()")
+	self:create_player_array()
 end
 
 function GameWin:init(is_fini)
@@ -14,6 +15,10 @@ function GameWin:init(is_fini)
 end
 
 function GameWin:init_widget()
+	
+end
+
+function GameWin:create_player_array()
 	-- local partner = self.core
 	for _ , player_info in pairs(self.player_array) do
 		local layout = {
