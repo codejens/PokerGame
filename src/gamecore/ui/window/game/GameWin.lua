@@ -22,7 +22,7 @@ function GameWin:__init()
 end
 
 function GameWin:init(is_fini)
-	self.define_makers = 2
+	self.define_makers_pos = 2
 	self.player_array = {}--GameModel:get_cur_player_array()
 	self.panel_player_array = {}
 	if is_fini then
@@ -41,7 +41,7 @@ end
 function GameWin:create_makers()
 
 	local array = {}
-    array.id = 1000+self.define_makers
+    array.id = 1000+self.define_makers_pos
     array.sex = math.random(0,1)
     array.name = "庄家"
     array.yuanbao = math.random(0,10000)
@@ -105,15 +105,27 @@ function GameWin:remove_player(index)
 end
 
 function GameWin:update_poker(to_index)
+	self:make_deal_action(to_index)
 end
 
 function GameWin:make_deal_action(to_index)
-	local form_index = self.define_makers
+	local form_index = self.define_makers_pos
 	local form_pos = self.panel_player_array[form_index].layout.pos
 	local to_pos = self:panel_player_array[to_index].layout.pos
 	
-	-- local layout = 
-	local img_poker = GUIImg:create_by_layout()
+	local layout = {
+	img_n = "ui/main/card_back.png",
+	pos = form_pos,
+	}
+	local img_poker = GUIImg:create_by_layout(layout)
+	self:addChild(img_poker)
+	local arg = {
+		x = to_pos[1],
+		y = to_pos[2],
+		time = 0.2,
+	}
+	local sp_action = transition.moveTo(img_poker,arg)
+	
 	-- transition.moveTo()
 
 end

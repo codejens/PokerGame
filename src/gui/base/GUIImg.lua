@@ -37,7 +37,9 @@ end
 function GUIImg:create_by_layout(layout)
 	local img = self(self:create(layout.img_n).core)
 	img:setPosition(layout.pos[1],layout.pos[2])
-	img:setContentSize(layout.size[1],layout.size[2])
+	if layout.size then
+		img:setContentSize(layout.size[1],layout.size[2])
+	end
 	if img.is_nine then
 		img:setScale9Enabled(true)
 	end
