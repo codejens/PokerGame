@@ -3,26 +3,26 @@ GameWin = simple_class(GUIWindow)
 
 function GameWin:update(param_1,param_2,param_3,param_4)
 	if param_1 == "add_player" then
-		self:update_data()
+		self:get_data()
 		self:add_player(param_2)
 	elseif param_1 == "remove_player" then
-		self:update_data()
+		self:get_data()
 		self:remove_player(param_2)
 	elseif param_1 == "update_poker" then
-		self:update_data()
+		self:get_data()
 		self:update_poker()
 	end
 end
 
 function GameWin:__init()
 	print("MainWin:__init()")
-	self:update_data()
+	self:get_data()
 	self:create_makers()
 	self:create_player_array()
 end
 
 function GameWin:init(is_fini)
-	self.define_makers_pos = 2
+	self.define_makers_pos = 1
 	self.player_array = {}--GameModel:get_cur_player_array()
 	self.panel_player_array = {}
 	if is_fini then
@@ -30,7 +30,8 @@ function GameWin:init(is_fini)
 	end
 end
 
-function GameWin:update_data()
+--获取服务器下发的数据
+function GameWin:get_data()
 	self.player_array = GameModel:get_cur_player_array()
 end
 
@@ -38,6 +39,7 @@ function GameWin:init_widget()
 	
 end
 
+--创建主/庄家
 function GameWin:create_makers()
 
 	local array = {}
@@ -49,11 +51,12 @@ function GameWin:create_makers()
     array.cur_money = math.random(1,9999999)
     array.head_type = math.random(1,10)
     array.mantra = ""
-    array.index = have_pos[2]
+    array.index = GameConfig:get_have_pos(self.define_makers_pos)
 
 	self:create_player(array)
 end
 
+--遍历玩家列表创建
 function GameWin:create_player_array()
 	-- local partner = self.core
 	for _ , player_info in pairs(self.player_array) do
@@ -61,6 +64,7 @@ function GameWin:create_player_array()
 	end
 end
 
+--创建玩家
 function GameWin:create_player(player_info)
 	local layout = {
 		img_n = "ui/common/gold_home_avatar.png",
@@ -111,7 +115,7 @@ end
 function GameWin:make_deal_action(to_index)
 	local form_index = self.define_makers_pos
 	local form_pos = self.panel_player_array[form_index].layout.pos
-	local to_pos = self:panel_player_array[to_index].layout.pos
+	local to_pos = self.panel_player_array[to_index].layout.pos
 	
 	local layout = {
 	img_n = "ui/main/card_back.png",

@@ -12,7 +12,7 @@ protocol_func_map_client[1] = {
         NetManager:send_packet( np )
 
         protocol_func_map_server[1][1]()
-    end
+    end,
     [2] = function(param_1_int)
         if param_1_int == 1 then
             protocol_func_map_server[1][2]()
@@ -31,7 +31,7 @@ local function get_player_info(np,num)
     array.cur_money = math.random(1,9999999)
     array.head_type = math.random(1,10)
     array.mantra = "我们来盲注"
-    array.index = have_pos[num]
+    array.index = GameConfig:get_have_pos(num)
     return array        
 end
 
@@ -49,7 +49,7 @@ protocol_func_map_server[1] = {
     [2] = function(np)
         local array = get_player_info(np)
         PacketDispatcher:dispather(1,2, array)--分发数据
-    end
+    end,
     [3] = function(np)
         local index = 5
         PacketDispatcher:dispather(1,3,index)
