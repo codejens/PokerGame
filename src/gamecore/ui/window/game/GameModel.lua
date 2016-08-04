@@ -35,12 +35,13 @@ function GameModel:get_window()
 	return GUIManager:find_window(self.win_name)
 end
 
-function GameModel:update_window(...)
-	GameModel:update_window(self.win_name,...)
+function GameModel:update_window(param1,param2,param3)
+	GameModel:update_window(self.win_name,param1,param2,param3)
 end
 
 function GameModel:delete_player(index)
 	self.cur_player_array[index] = nil
+	self:update_window("delete_player",index)
 end
 
 GameModel:init()

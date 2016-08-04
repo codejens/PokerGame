@@ -37,7 +37,7 @@ local new_controll_class = {
 	["SPanel"] = "GUIPanel",
 	["SLabel"] = "GUIText",
 	["SImage"] = "GUIImg",
-	["SEditBox"] = "GUINode",
+	["SEditBox"] = "GUITextField",
 	["STextButton"] = "GUIButton",
 	["STextArea"] = "GUIRichText",
 	["SScroll"] = "GUINode",
@@ -50,11 +50,11 @@ local new_controll_class = {
 	["STouchPanel"] = "GUINode",
 }
 function ChangeControllName(controll_name)
+	-- print("controll_name=",controll_name)
 	local new_name = new_controll_class[controll_name]
-	if new_name == "GUINode" then 
-		print("该控件尚未实现controll_name=",controll_name)
-	else
-		-- print(string.format("旧控件%s已成功转换新控件%s",controll_name,new_name))
+	if new_name == nil then 
+		-- print("该控件尚未实现controll_name=",controll_name)
+		return controll_name
 	end
 	return new_name
 end
@@ -62,7 +62,6 @@ end
 
 function _UICreateMethod( layout,win_self)
 		layout.class = ChangeControllName(layout.class)
-	-- print("layout=",layout.class)
 		local node  = _G[layout.class]:create_by_layout(layout)
 		--root保存根节点
 		if not win_self["root"] then
@@ -75,7 +74,6 @@ function _UICreateMethod( layout,win_self)
 		--node:setName(layout.name)
 		if layout.child then
 			for i=1,#layout.child do
-				-- print("i,layout.child[i]=",i,layout.child[i].class)
 				local child = _UICreateByLayout( layout.child[i],win_self )				
 				node:addChild(child,layout.child[i].zOrder or 0)
 				-- print("addChild name=",layout.child[i].name)

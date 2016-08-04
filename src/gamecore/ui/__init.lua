@@ -10,6 +10,7 @@ require 'gui.base.GUIWidget'
 require 'gui.base.GUIStudioView'
 require 'gui.base.GUIRichText'
 require 'gui.base.GUIWebView'
+require 'gui.base.GUITextField'
 
 
 require 'gamecore.ui.component.__init'
@@ -34,7 +35,7 @@ require 'gamecore.ui.gui_manager'
 
 --------------------------new-------
 require "gamecore.ui.window.main.MainWin"
-
+require "gamecore.ui.window.test.TestTips"
 require "gamecore.ui.window.mainhall.MainHallWin"
 require "gamecore.ui.window.mainhall.MainHallCC"
 require "gamecore.ui.window.mainhall.MainHallModel"

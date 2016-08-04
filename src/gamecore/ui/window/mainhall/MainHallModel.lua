@@ -11,3 +11,7 @@ end
 function MainHallModel:close_mainhall_win()
 	GUIManager:hide_window("mainhall_win")
 end
+
+local function player_leave(index)
+	print("index=",index)
+end

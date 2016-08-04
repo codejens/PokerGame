@@ -18,6 +18,7 @@ local _UI_MAPPINGS =
 	common = { file = "layout/studio/common/stu_common.lua", creator_name = "CommonWin", zOrder = 1 },
 	modal = { creator_name = "ModalWin", zOrder = 1000 },
 	task = { creator_name = "TaskWin", zOrder = 1000 },
+	test_tips = { file = "ue_test_tips" , creator_name = "TestTips", zOrder = 1000 },
 	--console = { file = 'ui/console.csb', creator = GUIConsole, zOrder = 2 },
 	--world_menu = { file = 'ui/worldMenu.csb', creator = GUIWorldMenu, zOrder = 3 }
 }
@@ -53,6 +54,13 @@ function GUIManager:switchScene(scene)
 	-- scene:addChild(self._ui_root)
 	self.scene = scene
 	self._ui_root = scene
+
+	-- local function xxxxxxxxxx(aa,bb)
+		-- print("aa=",aa)
+		-- print("bb=",bb)
+	-- end
+	-- print("1111111111111111")
+	-- ScriptHandlerMgr:getInstance():registerScriptHandler(self._ui_root,xxxxxxxxxx,cc.Handler.EVENT_EVENT_CUSTOMINT)
 end
 
 

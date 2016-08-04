@@ -58,6 +58,12 @@ function GUIBase:getContentSize(  )
 	return self.core:getContentSize()
 end
 
+function GUIBase:getString()
+	if self.core then
+		return self.core:getString()
+	end
+end
+
 --设置缩放
 function GUIBase:setScale( x,y )
 	if y then

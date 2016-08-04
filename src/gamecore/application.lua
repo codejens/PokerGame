@@ -190,6 +190,8 @@ function application:run()
 	self:init()
 	gameStateManager:init()
 	gameStateManager:setState(initialState)
+
+	
 end
 
 
@@ -199,7 +201,10 @@ end
 
 function application.onKeyboardEvent( event, code, msg )
 	print( event, code, msg )
+	print("event=",event)
 	if event == 47 then    -- f1
-        reload( 'test.RefreshForTest' )
+        -- reload( 'test.RefreshForTest' )
+    elseif event ==48 then
+    	GUIManager:show_window("test_tips")
 	end
 end

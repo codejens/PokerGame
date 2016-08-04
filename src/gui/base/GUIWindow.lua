@@ -58,6 +58,7 @@ function GUIWindow:__init()
 	-- window.core = gameNode
 	-- window.result = {}
 	win:setContentSize(GameScreenFactors.viewPort_width,GameScreenFactors.viewPort_height)
+	win:setTouchEnabled(false)
 	-- print("GameScreenFactors.viewPort_width=,GameScreenFactors.viewPort_height=",GameScreenFactors.viewPort_width,GameScreenFactors.viewPort_height)
 	-- print("winSize",winSize.width,winSize.height)
 	-- print("hw,hh=",hw,hh)

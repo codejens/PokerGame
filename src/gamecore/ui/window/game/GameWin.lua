@@ -5,9 +5,9 @@ function GameWin:update(param_1,param_2,param_3,param_4)
 	if param_1 == "add_player" then
 		self:get_data()
 		self:add_player(param_2)
-	elseif param_1 == "remove_player" then
+	elseif param_1 == "delete_player" then
 		self:get_data()
-		self:remove_player(param_2)
+		self:delete_player(param_2)
 	elseif param_1 == "update_poker" then
 		self:get_data()
 		self:update_poker()
@@ -51,7 +51,7 @@ function GameWin:create_makers()
     array.cur_money = math.random(1,9999999)
     array.head_type = math.random(1,10)
     array.mantra = ""
-    array.index = GameConfig:get_have_pos(self.define_makers_pos)
+    array.index = self.define_makers_pos--GameConfig:get_have_pos(self.define_makers_pos)
 
 	self:create_player(array)
 end
@@ -68,7 +68,7 @@ end
 function GameWin:create_player(player_info)
 	local layout = {
 		img_n = "ui/common/gold_home_avatar.png",
-		pos = GameConfig.POS[player_info.index],
+		pos = GameConfig:get_pos(player_info.index),
 		size = {-1,-1},
 	}
 
@@ -103,7 +103,7 @@ function GameWin:get_player_info_by_index(index)
 	end
 end
 
-function GameWin:remove_player(index)
+function GameWin:delete_player(index)
 	self.panel_player_array[index]:removeFromParent(true)
 	self.panel_player_array[index] = nil
 end

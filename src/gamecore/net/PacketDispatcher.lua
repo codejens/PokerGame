@@ -53,7 +53,7 @@ function PacketDispatcher:send_protocol( prot_id_t, ...  )
 
     if ( protocol_func_map_client[sysid] and protocol_func_map_client[sysid][pid] ) then 
         prot_func = protocol_func_map_client[sysid][pid]
-        print(" send sysid : ", sysid , pid, ...)
+        -- print(" send sysid : ", sysid , pid, ...)
         prot_func( ... )
     else
     	printError( "Can't find the function : ", sysid, pid )

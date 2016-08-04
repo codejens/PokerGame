@@ -2,6 +2,7 @@ protocol_func_map_client[1] = {
     [1] = function(
                 param_1_int    --flag,1/快速场,2/自由场,3/竞技场
                 )
+        print("send 1,1")
         --@debug_begin
         protocol_func_map:check_param_type({
             { param_name = param_1_int, lua_type = "number" }, 
@@ -14,9 +15,14 @@ protocol_func_map_client[1] = {
         protocol_func_map_server[1][1]()
     end,
     [2] = function(param_1_int)
+        print("send 1,2")
         if param_1_int == 1 then
             protocol_func_map_server[1][2]()
         end
+    end,
+    [3] = function(param_1_int)
+        print("send player leave 1,3")
+        protocol_func_map_server[1][3]()
     end
 }
 
@@ -37,6 +43,7 @@ end
 
 protocol_func_map_server[1] = {
     [1] = function ( np )
+        print("recv player_info_list 1,1")
         local val_1_init = 5
         local val_array = {}
         for num = 1 , val_1_init do
@@ -47,10 +54,12 @@ protocol_func_map_server[1] = {
         PacketDispatcher:dispather(1,1, val_array)--分发数据
     end,
     [2] = function(np)
+        print("recv player_info 1,2")
         local array = get_player_info(np)
         PacketDispatcher:dispather(1,2, array)--分发数据
     end,
     [3] = function(np)
+        print("recv player leave 1,3")
         local index = 5
         PacketDispatcher:dispather(1,3,index)
 
