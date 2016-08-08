@@ -200,11 +200,12 @@ function application.onAppEvent(event, code, msg)
 end
 
 function application.onKeyboardEvent( event, code, msg )
-	print( event, code, msg )
-	print("event=",event)
 	if event == 47 then    -- f1
         -- reload( 'test.RefreshForTest' )
     elseif event ==48 then
-    	GUIManager:show_window("test_tips")
+    	local win = GUIManager:show_window("test_tips")
+		if win then
+			GUIManager:hide_window("test_tips")
+		end
 	end
 end

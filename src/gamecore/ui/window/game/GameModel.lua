@@ -29,6 +29,7 @@ end
 
 function GameModel:add_player(player_info)
 	self.cur_player_array[player_info.index] = player_info
+	self:update_window("add_player",player_info.index)
 end
 
 function GameModel:get_window()
@@ -36,7 +37,7 @@ function GameModel:get_window()
 end
 
 function GameModel:update_window(param1,param2,param3)
-	GameModel:update_window(self.win_name,param1,param2,param3)
+	GUIManager:update_window(self.win_name,param1,param2,param3)
 end
 
 function GameModel:delete_player(index)

@@ -2,6 +2,7 @@
 GameWin = simple_class(GUIWindow)
 
 function GameWin:update(param_1,param_2,param_3,param_4)
+	print("GameWin:update param_1,param_2,param_3,param_4 = ",param_1,param_2,param_3,param_4)
 	if param_1 == "add_player" then
 		self:get_data()
 		self:add_player(param_2)
@@ -15,7 +16,6 @@ function GameWin:update(param_1,param_2,param_3,param_4)
 end
 
 function GameWin:__init()
-	print("MainWin:__init()")
 	self:get_data()
 	self:create_makers()
 	self:create_player_array()
@@ -91,12 +91,12 @@ function GameWin:create_player(player_info)
 end
 
 function GameWin:add_player(index)
-	local player_info = self:get_player_info_by_index()
+	local player_info = self:get_player_info_by_index(index)
 	self:create_player(player_info)
 end
 
 function GameWin:get_player_info_by_index(index)
-	for _ , player in pairs(self.player_array) do
+	for _ , player_info in pairs(self.player_array) do
 		if player_info.index == index then
 			return player_info
 		end
@@ -104,8 +104,12 @@ function GameWin:get_player_info_by_index(index)
 end
 
 function GameWin:delete_player(index)
-	self.panel_player_array[index]:removeFromParent(true)
-	self.panel_player_array[index] = nil
+	local panel_player = self.panel_player_array[index]
+	if panel_player then
+		panel_player:removeFromParent(true)
+		panel_player = nil
+		self.panel_player_array[index] = nil
+	end
 end
 
 function GameWin:update_poker(to_index)

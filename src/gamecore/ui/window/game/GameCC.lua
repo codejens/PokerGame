@@ -15,7 +15,6 @@ function GameCC:recv_enter_game_result(player_array)
 end
 
 function GameCC:delete_player(index)
-	print("xxxxxxxxxxxxxxxxxxxxxx")
 	GameModel:delete_player(index)
 end
 

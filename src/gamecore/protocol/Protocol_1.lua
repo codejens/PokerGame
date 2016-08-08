@@ -16,14 +16,20 @@ protocol_func_map_client[1] = {
     end,
     [2] = function(param_1_int)
         print("send 1,2")
-        if param_1_int == 1 then
-            protocol_func_map_server[1][2]()
-        end
+        -- if param_1_int == 1 then
+        -- local np = NetManager:get_NetPacket(1,2) 
+        -- np:writeInt( 8 )
+        -- NetManager:send_packet( np )
+            protocol_func_map_server[1][2](nil,7)
+        -- end
     end,
     [3] = function(param_1_int)
         print("send player leave 1,3")
         protocol_func_map_server[1][3]()
-    end
+    end,
+    [4] = function(param_1_int)
+        protocol_func_map_server[1][4]()
+    end,
 }
 
 local function get_player_info(np,num)
@@ -53,15 +59,17 @@ protocol_func_map_server[1] = {
         end
         PacketDispatcher:dispather(1,1, val_array)--分发数据
     end,
-    [2] = function(np)
+    [2] = function(np,num)
         print("recv player_info 1,2")
-        local array = get_player_info(np)
+        local array = get_player_info(np,num)
         PacketDispatcher:dispather(1,2, array)--分发数据
     end,
     [3] = function(np)
         print("recv player leave 1,3")
         local index = 5
         PacketDispatcher:dispather(1,3,index)
-
+    end,
+    [4] = function()
+        local index = 5,
     end
 }
