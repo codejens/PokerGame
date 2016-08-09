@@ -2,26 +2,22 @@ protocol_func_map_client[1] = {
     [1] = function(
                 param_1_int    --flag,1/快速场,2/自由场,3/竞技场
                 )
-        print("send 1,1")
+        protocol_func_map_server[1][1](param_1_int)
+    end,
+    [2] = function(param_1_int)
+        --新进来一个玩家
         --@debug_begin
         protocol_func_map:check_param_type({
             { param_name = param_1_int, lua_type = "number" }, 
         })
         --@debug_end
-        local np = NetManager:get_NetPacket(1,1) 
-        np:writeInt( param_1_int )
-        NetManager:send_packet( np )
-
-        protocol_func_map_server[1][1]()
-    end,
-    [2] = function(param_1_int)
-        print("send 1,2")
-        -- if param_1_int == 1 then
-        -- local np = NetManager:get_NetPacket(1,2) 
-        -- np:writeInt( 8 )
-        -- NetManager:send_packet( np )
+        if is_no_server then
             protocol_func_map_server[1][2](nil,7)
-        -- end
+        else
+            local np = NetManager:get_NetPacket(1,2) 
+            np:writeInt(param_1_int)
+            NetManager:send_packet(np)
+        end
     end,
     [3] = function(param_1_int)
         print("send player leave 1,3")
@@ -48,28 +44,38 @@ local function get_player_info(np,num)
 end
 
 protocol_func_map_server[1] = {
-    [1] = function ( np )
-        print("recv player_info_list 1,1")
-        local val_1_init = 5
-        local val_array = {}
-        for num = 1 , val_1_init do
-            local array = get_player_info(np,num)
-            -- table.insert(val_array,array)
-            val_array[array.index] = array
+    [1] = function ( param_1_int )
+        if param_1_int == 1 then --快速入场
+            --进入房间收到该房间的玩家列表
+            local val_1_init = math.random(1,5)
+            local val_array = {}
+            for num = 1 , val_1_init do
+                local array = get_player_info(num)
+                val_array[array.index] = array
+            end
+            PacketDispatcher:dispather(1,1, val_array)--分发数据
+        elseif param_1_int == 2 then --自由场
+            local val_1_init = 4 --4大类
+            
+        elseif param_1_int == 3 then --竞技场
+
         end
-        PacketDispatcher:dispather(1,1, val_array)--分发数据
     end,
     [2] = function(np,num)
+        --新进来一个玩家
         print("recv player_info 1,2")
         local array = get_player_info(np,num)
         PacketDispatcher:dispather(1,2, array)--分发数据
     end,
     [3] = function(np)
+        --玩家离去
         print("recv player leave 1,3")
         local index = 5
         PacketDispatcher:dispather(1,3,index)
     end,
     [4] = function()
-        local index = 5,
+        --给玩家发牌
+        local index = 5
+
     end
 }

@@ -24,7 +24,8 @@ require 'common.helpers.init'
 
 require 'gamecore.appMarco'
 require 'gamecore.application'
-
+is_debug = true
+is_no_server = true
 --[[
 	打印请统一使用print
 	打印堆栈使用print_stack
