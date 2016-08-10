@@ -58,7 +58,7 @@ function GUIWindow:__init()
 	-- window.core = gameNode
 	-- window.result = {}
 	win:setContentSize(GameScreenFactors.viewPort_width,GameScreenFactors.viewPort_height)
-	win:setTouchEnabled(false)
+	win:setTouchEnabled(true)
 	-- print("GameScreenFactors.viewPort_width=,GameScreenFactors.viewPort_height=",GameScreenFactors.viewPort_width,GameScreenFactors.viewPort_height)
 	-- print("winSize",winSize.width,winSize.height)
 	-- print("hw,hh=",hw,hh)
@@ -69,7 +69,9 @@ function GUIWindow:__init()
 	-- win:setContentSize(GameScreenFactors.viewPort_width,GameScreenFactors.viewPort_height)
 	-- win:setAnchorPoint(0.5,0.5)
 	self.core = win.core
-	self:create_by_layout()
+	if self.layout ~= nil then
+		self:create_by_layout()
+	end
 	self:init()
 	-- self:create_widget()
 	self:init_widget()

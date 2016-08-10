@@ -11,6 +11,7 @@ require 'gui.base.GUIStudioView'
 require 'gui.base.GUIRichText'
 require 'gui.base.GUIWebView'
 require 'gui.base.GUITextField'
+require 'gui.base.GUITableView'
 
 
 require 'gamecore.ui.component.__init'

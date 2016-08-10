@@ -128,3 +128,9 @@ function GUIBase:setTouchEnabled(enable)
 		self.core:setTouchEnabled(enable)
 	end
 end
+
+function GUIBase:setTag(tag)
+	if self.core then
+		self.core:setTag(tag)
+	end
+end

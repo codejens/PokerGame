@@ -6,7 +6,7 @@ GUIManager = {}
 local _safeRemoveFromParent = cocosHelper.safeRemoveFromParent
 local _UI_MAPPINGS = 
 {
-	login_win = { file = "ue_login_win", creator_name = "MainWin", zOrder = 1 },
+	login_win = { files = "ue_login_win", creator_name = "MainWin", zOrder = 1 },
 	mainhall_win = { file = "ue_mainhall_win", creator_name = "MainHallWin", zOrder = 1 },
 	game_win = {file = "ue_game_win",creator_name = "GameWin",zOrder = 1},
 	main_win = { creator_name = "MainWin", zOrder = 1 },
@@ -19,6 +19,7 @@ local _UI_MAPPINGS =
 	modal = { creator_name = "ModalWin", zOrder = 1000 },
 	task = { creator_name = "TaskWin", zOrder = 1000 },
 	test_tips = { file = "ue_test_tips" , creator_name = "TestTips", zOrder = 1000 },
+	screen_notic_win = { creator_name = "ScreenNoticWin", zOrder = 1000 },
 	--console = { file = 'ui/console.csb', creator = GUIConsole, zOrder = 2 },
 	--world_menu = { file = 'ui/worldMenu.csb', creator = GUIWorldMenu, zOrder = 3 }
 }
