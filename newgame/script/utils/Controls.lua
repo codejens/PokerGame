@@ -1,0 +1,1945 @@
+-- ---------HJH
+-- ---------2012-2-15
+-- ---------通用控件
+-- ---------
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------AbstractBasePanel类
+-- super_class.AbstractNode()
+-- ---------
+-- ---------
+-- function AbstractNode:__init(fatherPanel)
+-- 	self.father_panel = fatherPanel
+-- 	self.view = nil
+-- 	self.createItemList = {}
+-- 	-------
+-- 	-------touch begin info
+-- 	self.touch_begin_return = true
+-- 	self.touch_begin_fun = nil
+-- 	-------
+-- 	-------touch end info
+-- 	self.touch_end_return = true
+-- 	self.touch_end_fun = nil
+-- 	-------
+-- 	-------touch move info
+-- 	self.touch_move_return = true
+-- 	self.touch_move_fun = nil
+-- 	-------
+-- 	-------touch click info
+-- 	self.touch_click_return = true
+-- 	self.touch_click_fun = nil
+-- 	-------
+-- 	-------touch double click info
+-- 	self.touch_double_click_return = true
+-- 	self.touch_double_click_fun = nil
+-- 	-------
+-- 	-------touch timer fun
+-- 	self.touch_timer_fun = nil
+-- end
+-- ---------
+-- ---------
+-- function AbstractNode:create(fatherPanel)
+-- 	 return AbstractNode(fatherPanel)
+-- end
+-- ---------
+-- ---------
+-- ---------设置TOUCH_BEGAN函数
+-- function AbstractNode:setTouchBeganFun(userFunction)
+-- 	self.touch_begin_fun = userFunction
+-- end
+-- ---------
+-- ---------设置TOUCH_BEGIN返回值
+-- function AbstractNode:setTouchBeganReturnValue(returnValue)
+-- 	self.touch_begin_return = returnValue
+-- end
+-- ---------
+-- ---------设置TOUCH_MOVED函数
+-- function AbstractNode:setTouchMovedFun(userFunction)
+-- 	self.touch_move_fun = userFunction
+-- end
+-- ---------
+-- ---------设置TOUCH_MOVED返回值
+-- function AbstractNode:setTouchMovedReturnValue(returnValue)
+-- 	self.touch_move_return = returnValue
+-- end
+-- ---------
+-- ---------设置TOUCH_ENDED函数
+-- function AbstractNode:setTouchEndedFun(userFunction)
+-- 	self.touch_end_fun = userFunction
+-- end
+-- ---------
+-- ---------设置TOUCH_ENDED返回值
+-- function AbstractNode:setTouchEndedReturnValue(returnValue)
+-- 	self.touch_end_return = returnValue
+-- end
+-- ---------
+-- ---------设置TOUCH_CLICK函数
+-- function AbstractNode:setTouchClickFun(userFunction)
+-- 	self.touch_click_fun = userFunction
+-- end
+-- ---------
+-- ---------设置TOUCH_CLICK返回值
+-- function AbstractNode:setTouchClickReturnValue(returnValue)
+-- 	self.touch_click_return = returnValue
+-- end
+-- ---------
+-- ---------设置TOUCH_DOUBLE_CLICK函数
+-- function AbstractNode:setTouchDoubleClickFun(userFunction)
+-- 	self.touch_double_click_fun = userFunction
+-- end
+-- ---------
+-- ---------设置TOUCH_DOUBLE_CLICK返回值
+-- function AbstractNode:setTouchDoubleClickReturnValue(returnValue)
+-- 	self.touch_double_click_return = returnValue
+-- end
+-- ---------
+-- ---------设置TOUCH_TIMER函数
+-- function AbstractNode:setTouchTimerFun(userFunction)
+-- 	self.touch_timer_fun = userFunction
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------抽像BasePanel类，只提供方法
+-- super_class.AbstractBasePanel(AbstractNode)
+-- ---------
+-- ---------抽像BasePanel类消息注册方法
+-- function AbstractBasePanel:registerScriptFun()
+-- 	if self.view ~= nil then
+-- 		local function basePanelMessageFun(eventType, arg, msgid, selfItem)
+-- 			-------
+-- 			if eventType == nil then
+-- 				return 
+-- 			end
+-- 			-------
+-- 			if eventType == TOUCH_BEGAN then
+-- 				if self.touch_begin_fun ~= nil then
+-- 					self.touch_begin_fun()
+-- 				end
+-- 				return self.touch_begin_return
+-- 			elseif eventType == TOUCH_MOVED then
+-- 				if self.touch_move_fun ~= nil then
+-- 					self.touch_move_fun()
+-- 				end
+-- 				return self.touch_move_return
+-- 			elseif eventType == TOUCH_ENDED then
+-- 				if self.touch_end_fun ~= nil then
+-- 					self.touch_end_fun()
+-- 				end
+-- 				return self.touch_end_return
+-- 			elseif eventType == TOUCH_CLICK then
+-- 				if self.touch_click_fun ~= nil then
+-- 					self.touch_click_fun()
+-- 				end
+-- 				return self.touch_click_return
+-- 			elseif eventType == TOUCH_DOUBLE_CLICK then
+-- 				if self.touch_double_click_fun ~= nil then
+-- 					self.touch_double_click_fun()
+-- 				end
+-- 				return self.touch_double_click_return
+-- 			elseif eventType == TIMER then
+-- 				if self.touch_timer_fun ~= nil then
+-- 					self.touch_timer_fun()
+-- 				end
+-- 				return true
+-- 			end
+-- 		end
+-- 		-------
+-- 		self.view:registerScriptHandler(basePanelMessageFun)
+-- 	end
+-- end
+-- ---------
+-- ---------设置位置
+-- function AbstractBasePanel:setPos(x, y)
+-- 	if self.view ~= nil then
+-- 		self.view:setPosition(x, y)
+-- 	end
+-- end
+-- ---------
+-- ---------设置大小
+-- function AbstractBasePanel:setSize(width, height)
+-- 	if self.view ~= nil then
+-- 		self.view:setSize(width, height)
+-- 	end
+-- end
+-- ---------
+-- ---------设置图片
+-- function AbstractBasePanel:setImage(image)
+-- 	if self.view ~= nil then
+-- 		self.view:setTexture(image)
+-- 	end
+-- end
+-- ---------
+-- ---------设置锚点
+-- function AbstractBasePanel:setAnchorPoint(x, y)
+-- 	if self.view ~= nil then
+-- 		self.view:setAnchorPoint(x, y)
+-- 	end
+-- end
+-- ---------
+-- ---------设置定时器
+-- function AbstractBasePanel:setTimer(rate)
+-- 	if self.view ~= nil then
+-- 		self.view:setTimer(rate)
+-- 	end
+-- end
+-- ---------
+-- ---------设置消息ID
+-- function AbstractBasePanel:setMessageId(id)
+-- 	if self.view ~= nil then
+-- 		self.view:setMessageIndex(id)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- ---------
+-- ---------取得位置
+-- function AbstractBasePanel:getPos()
+-- 	if self.view ~= nil then
+-- 		return self.view:getPositionS()
+-- 	end
+-- end
+-- ---------
+-- ---------取得大小
+-- function AbstractBasePanel:getSize()
+-- 	if self.view ~= nil then
+-- 		return self.view:getSize()
+-- 	end
+-- end
+-- ---------
+-- ---------取得消息Id
+-- function AbstractBasePanel:getMessageId()
+-- 	if self.view ~= nil then
+-- 		return self.view:getMessageIndex()
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------BasePanel类
+-- super_class.BasePanel(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function BasePanelCreateFunction(self, width, height, x, y, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottonRightWidth, buttonRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tImage = image
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	-------
+-- 	-------create basepanel
+-- 	self.view = CCBasePanel:panelWithFile(tPosX, tPosY, tWidth, tHeight, tImage, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+-- 	-------
+-- end
+-- ---------
+-- ---------
+-- function BasePanel:__init(fatherPanel)
+-- end
+-- ---------
+-- ---------
+-- function BasePanel:create(fatherPanel, x, y, width, height, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottonRightWidth, bottonRightHeight)
+-- 	local sprite = BasePanel(fatherPanel)
+-- 	BasePanelCreateFunction(sprite, width, height, x, y, image, topLeftWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------按钮类
+-- super_class.Button(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function ButtonCreateFunction(self, width, height, x, y, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tImageUp = ""
+-- 	local tImageDown = nil
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	if type(image) == 'table' and  #image > 1 then
+-- 		tImageUp = image[1]
+-- 		tImageDown = image[2]
+-- 	else
+-- 		tImageUp = image
+-- 	end
+-- 	---------
+-- 	self.view = CCNGBtnMulTex:buttonWithFile(tPosX, tPosY, tWidth, tHeight, tImageUp, TYPE_MUL_TEX, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+-- 	if tImageDown ~= nil then
+-- 		self.view:addTexWithFile(CLICK_STATE_DOWN, tImageDown)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Button:__init(fatherPanel)
+-- end
+-- ---------
+-- ---------按钮类中image项可为一个list
+-- ---------当image长度大于2时第一张为TOUCH_UP状态图片，第二张为TOUCH_DOWN状态图片。
+-- ---------当image长度小于等于1时,image为TOUCH_UP状态图片
+-- function Button:create(fatherPanel, x, y, width, height, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local sprite = Button(fatherPanel)
+-- 	ButtonCreateFunction(sprite, width, height, x, y, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ---------
+-- ---------添加对应状态图片
+-- function Button:addImage(state, image)
+-- 	if self.view ~= nil then
+-- 		self.view:addTexWithFile(state, image)
+-- 	end
+-- end
+-- ---------
+-- ---------添加对应状态变灰图片
+-- function Button:addGrayImage(state, image)
+-- 	if self.view ~= nil then
+-- 		self.view:addTexWithFileEx(state, TYPE_GRAY, image)
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------图像类
+-- super_class.Image(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function ImageCreateFunction(self, width, height, x, y, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidt, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tImage = image
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	---------
+-- 	self.view = CCZXImage:imageWithFile( tPosX, tPosY, tWidth, tHeight, tImage, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+
+-- end
+-- ---------
+-- ---------
+-- function Image:__init(fatherPanel)
+-- end
+-- ---------
+-- ---------图像类不接收任何消息，所以不用注册消息函数
+-- function Image:create(fatherPanel, x, y, width, height, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local sprite = Image(fatherPanel)
+-- 	ImageCreateFunction(sprite, width, height, x, y, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	return sprite
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------文字按钮类
+-- super_class.TextButton(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function TextButtonCreateFunction(self, width, height, x, y, text, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tImageUp = ""
+-- 	local tImageDown = nil
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	local tText = text
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	if text == nil then
+-- 		tText = ""
+-- 	end
+-- 	if type(image) == 'table' and  #image > 1 then
+-- 		tImageUp = image[1]
+-- 		tImageDown = image[2]
+-- 	else
+-- 		tImageUp = image
+-- 	end
+
+-- 	---------
+-- 	self.view = CCTextButton:textButtonWithFile( tPosX, tPosY, tWidth, tHeight, tText, tImageUp, TYPE_MUL_TEX, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+-- 	if tImageDown ~= nil then
+-- 		self.view:addTexWithFile(CLICK_STATE_DOWN, tImageDown)
+-- 	end
+
+-- end
+-- ---------
+-- ---------
+-- function TextButton:__init(fatherPanel)
+-- end
+-- ---------
+-- ---------
+-- function TextButton:create(fatherPanel, x, y, width, height, text, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local sprite = TextButton(fatherPanel)
+-- 	TextButtonCreateFunction(sprite, width, height, x, y, text, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end	
+-- ---------
+-- ---------设置文字
+-- function TextButton:setText(text)
+-- 	if self.view ~= nil then
+-- 		self.view:setText(text)
+-- 	end
+-- end
+-- ---------
+-- ---------设置文字大小，当文字大于图片大小时，文字左下角位置处于，图片左下角1/10位置
+-- function TextButton:setFontSize(size)
+-- 	if self.view ~= nil then
+-- 		self.view:setFontSize(size)
+-- 	end
+-- end
+-- ---------
+-- ---------取得文字内容
+-- function TextButton:getText()
+-- 	if self.view ~= nil then
+-- 		return self.view:getText()
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------半透明面板
+-- super_class.ArcRect(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function ArcRectCreateFunction(self, width, height, x, y, color)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tColor = color
+-- 	---------
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if color == nil then
+-- 		tColor = 0xffffff
+-- 	end
+-- 	---------
+-- 	self.view = CCArcRect:arcRectWithColor( tPosX, tPosY, tWidth, tHeight, tColor)
+-- end
+-- ---------
+-- ---------
+-- function ArcRect:__init(fatherPanel)
+-- end
+-- ---------
+-- ---------说明：color为RGBA
+-- function ArcRect:create(fatherPanel, x, y, width, height, color)
+-- 	local sprite = ArcRect(fatherPanel)
+-- 	ArcRectCreateFunction( sprite, width, height, x, y, color)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ---------
+-- ---------设置颜色
+-- function ArcRect:setColor(color)
+-- 	if self.view ~= nil then
+-- 		self.view:setColor(color)
+-- 	end
+-- end
+-- ---------
+-- ---------取得颜色
+-- function ArcRect:getColor()
+-- 	if self.view ~= nil then
+-- 		return self.view:getColor()
+-- 	end
+-- end
+
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------输入框类
+-- super_class.EditBox(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function EditBoxCreateFunction(self, width, height, x, y, maxnum, image, fontSize, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRigthWidth, bottomRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tImage = image
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	local tMaxNum = maxnum
+-- 	local tFontSize = fontSize
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	if maxnum == nil then
+-- 		tMaxNum = 20
+-- 	end
+-- 	if fontSize == nil then
+-- 		tFontSize = 16
+-- 	end
+-- 	---------
+-- 	self.view = CCZXEditBox:editWithFile( tPosX, tPosY, tWidth, tHeight, tImage, tMaxNum, tFontSize, EDITBOX_TYPE_NORMAL, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+-- end
+-- ---------
+-- ---------
+-- function EditBox:__init(fatherPanel)
+-- 	self.keyBoardEnterFun = nil
+-- 	self.keyBoardClickFun = nil
+-- 	self.keyBoardAttachFun = nil
+-- 	self.keyBoardDetachFun = nil
+-- 	self.keyBoardBackSpaceFun = nil
+-- end
+-- ---------
+-- ---------
+-- function EditBox:registerScriptFun()
+-- 	if self.view ~= nil then
+-- 		local function editBoxMessageFun(eventType, arg, msgid, selfItem)
+-- 			-------
+-- 			if eventType == nil then
+-- 				return 
+-- 			end
+-- 			-------
+-- 			if eventType == TOUCH_BEGAN then
+-- 				if self.touch_begin_fun ~= nil then
+-- 					self.touch_begin_fun()
+-- 				end
+-- 				return self.touch_begin_return
+-- 			elseif eventType == TOUCH_MOVED then
+-- 				if self.touch_move_fun ~= nil then
+-- 					self.touch_move_fun()
+-- 				end
+-- 				return self.touch_move_return
+-- 			elseif eventType == TOUCH_ENDED then
+-- 				if self.touch_end_fun ~= nil then
+-- 					self.touch_end_fun()
+-- 				end
+-- 				return self.touch_end_return
+-- 			elseif eventType == TOUCH_CLICK then
+-- 				if self.touch_click_fun ~= nil then
+-- 					self.touch_click_fun()
+-- 				end
+-- 				return self.touch_click_return
+-- 			elseif eventType == TOUCH_DOUBLE_CLICK then
+-- 				if self.touch_double_click_fun ~= nil then
+-- 					self.touch_double_click_fun()
+-- 				end
+-- 				return self.touch_double_click_return
+-- 			elseif eventType == TIMER then
+-- 				if self.touch_timer_fun ~= nil then
+-- 					self.touch_timer_fun()
+-- 				end
+-- 				return true
+-- 			elseif eventType == KEYBOARD_ENTER then
+-- 				if self.keyBoardEnterFun ~= nil then
+-- 					self.keyBoardEnterFun()
+-- 				end
+-- 			elseif eventType == KEYBOARD_CLICK then
+-- 				if self.keyBoardClickFun ~= nil then
+-- 					self.keyBoardClickFun()
+-- 				end
+-- 			elseif eventType == KEYBOARD_ATTACK then
+-- 				if self.keyBoardAttachFun ~= nil then
+-- 					self.keyBoardAttachFun()
+-- 				end
+-- 			elseif eventType == KEYBOARD_DETACH then
+-- 				if self.keyBoardDetachFun ~= nil then
+-- 					self.keyBoardDetachFun()
+-- 				end
+-- 			elseif eventType == KEYBOARD_BACKSPACE then
+-- 				if self.keyBoardBackSpaceFun ~= nil then
+-- 					self.keyBoardBackSpaceFun()
+-- 				end
+-- 			end
+-- 		end
+-- 		-------
+-- 		self.view:registerScriptHandler(editBoxMessageFun)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function EditBox:create(fatherPanel, x, y, width, height, maxnum, image, fontSize, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local sprite = EditBox(fatherPanel)
+-- 	EditBoxCreateFunction(sprite, width, height, x, y, maxnum, image, fontSize, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ---------
+-- ---------设置键盘回车函数
+-- function EditBox:setKeyBoardEnterFunction(userFunction)
+-- 	self.keyBoardEnterFun = userFunction
+-- end
+-- ---------
+-- ---------设置键盘按下函数
+-- function EditBox:setKeyBoardClickFunction(userFunction)
+-- 	self.keyBoardClickFun = userFunction
+-- end
+-- ---------
+-- ---------设置输入框按下函数
+-- function EditBox:setKeyBoardAttachFunction(userFunction)
+-- 	self.keyBoardAttachFun = userFunction
+-- end
+-- ---------
+-- ---------设置输入框离开函数，暂时不起作用
+-- function EditBox:setKeyBoardDetachFunction(userFunction)
+-- 	self.keyBoardDetachFun = userFunction
+-- end
+-- ---------
+-- ---------设置输入框退格键函数
+-- function EditBox:setKeyBoardBackSpaceFunction(userFunction)
+-- 	self.keyBoardBackSpaceFun = userFunction
+-- end
+-- ---------
+-- ---------设置文本内容
+-- function EditBox:setText(text)
+-- 	if self.view ~= nil then
+-- 		self.view:setText(text)
+-- 	end
+-- end
+-- ---------
+-- ---------设置文本最大输入数目
+-- function EditBox:setMaxNum(num)
+-- 	if self.view ~= nil then
+-- 		self.view:setMaxTextNum(num)
+-- 	end
+-- end
+-- ---------
+-- ---------设置输入框种类，共三种，EDITBOX_TYPE_NORMAL：普通文本框,EDITBOX_TYPE_PASSWORD：密码文本框,EDITBOX_TYPE_NUMBER：数字文本框，数字文本框暂时不起作用
+-- function EditBox:setType(type)
+-- 	if self.view ~= nil then
+-- 		self.view:setEditBoxType(type)
+-- 	end
+-- end
+-- ---------
+-- ---------设置是否使用剪裁
+-- function EditBox:setCut(isCut)
+-- 	if self.view ~= nil then
+-- 		self.view:setEnabelCut(isCut)
+-- 	end
+-- end
+-- ---------
+-- ---------取得文本内容
+-- function EditBox:getText()
+-- 	if self.view ~= nil then
+-- 		return self.view:getText()
+-- 	else
+-- 		return nil
+-- 	end
+-- end
+-- ---------
+-- ---------取得最大输入数量
+-- function EditBox:getMaxNum()
+-- 	if self.view ~= nil then
+-- 		return self.view:getMaxTextNum()
+-- 	else
+-- 		return 0
+-- 	end
+-- end
+-- ---------
+-- ---------取得当前输入数量
+-- function EditBox:getCurNum()
+-- 	if self.view ~= nil then
+-- 		return self.view:getCutTextNum()
+-- 	else
+-- 		return 0
+-- 	end
+-- end
+-- ---------
+-- ---------设置是否启用光标
+-- function EditBox:runIcon(isRun)
+-- 	if self.view ~= nil then
+-- 		self.view:isRunIcon(isRun)
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------列表类
+-- super_class.List(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function ListCreateFunction(self, width, height, x, y, vertical, horizontal, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRigthWidth ,bottomRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tImage = image
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	local tVertical = vertical
+-- 	local tHorizontal = horizontal
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	if vertical == nil then
+-- 		tVertical = 1
+-- 	end
+-- 	if horizontal == nil then
+-- 		tHorizontal = 1
+-- 	end
+-- 	---------
+-- 	self.view = CCZXList:listWithFile( tPosX, tPosY, tWidth, tHeight, tVertical, tHorizontal, tImage, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+
+-- end
+-- ---------
+-- ---------
+-- function List:__init(fatherPanel)
+-- end
+-- ---------
+-- ---------
+-- function List:create(fatherPanel, x, y, width, height, vertical, horizontal, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local sprite = List(fatherPanel)
+-- 	ListCreateFunction(width, height, vertical, horizontal, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ---------
+-- ---------取得
+-- function List:getVertical()
+-- 	if self.view ~= nil then
+-- 		return self.view:getVertical()
+-- 	else
+-- 		return 0
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function List:getHorizontal()
+-- 	if self.view ~= nil then
+-- 		return self.view:getHorizontal()
+-- 	else
+-- 		return 0
+-- 	end
+-- end
+-- ---------
+-- ---------添加对像
+-- function List:addItem(item)
+-- 	if self.view ~= nil then
+-- 		self.view:addItem(item)
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------list ex
+-- super_class.ListVertical(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function ListVerticalCreateFunction(self, width, height, x, y)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	---------
+-- 	self.view = CCBasePanel:panelWithFile(tPosX, tPosY, tWidth, tHeight,"")
+-- end
+-- ---------
+-- ---------
+-- function ListVertical:__init(fatherPanel)
+-- 	self.sizeInfo = nil
+-- 	self.spriteInfo = {}
+-- 	self.curIndex = 0
+-- end
+-- ---------
+-- ---------
+-- function ListVertical:create(fatherPanel, x, y, width, height, sizeInfo)
+-- 	local sprite = ListVertical(fatherPanel)
+-- 	self.sizeInfo = sizeInfo
+-- 	-- local width = 0
+-- 	-- local height = 0
+-- 	-- for i = 1 ,#sizeInfo do
+-- 	-- 	width = width + sizeInfo[i].width
+-- 	-- 	if height < sizeInfo[i].height then
+-- 	-- 		height = sizeInfo[i].height
+-- 	-- 	end
+-- 	-- end
+-- 	ListVerticalCreateFunction(sprite, width, height, x, y)
+-- 	return sprite
+-- end
+-- ---------
+-- ---------
+-- function ListVertical:addItem(item)
+-- 	if self.view ~= nil and self.curIndex < #self.sizeInfo then
+-- 		local curposx = 0
+-- 		local curposy = 0
+-- 		if self.curIndex > 0 then
+-- 			for i = 1 , self.curIndex do
+-- 				curposx = curposx + self.sizeInfo[i]
+-- 			end
+-- 		end
+-- 		item:setPosition(curposx, curposy)
+-- 		self.view:addChild(item.view)
+-- 		self.spriteInfo[self.curIndex] = item
+-- 		self.curIndex = self.curIndex + 1
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function ListVertical:addItemEx(item)
+-- 	if self.view ~= nil and self.curIndex < #self.sizeInfo then
+-- 		local curposx = 0
+-- 		local curposy = 0
+-- 		if self.curIndex > 0 then
+-- 			for i = 1 , self.curIndex do
+-- 				curposx = curposx + self.sizeInfo[i]
+-- 			end
+-- 		end
+-- 		item:setPosition(curposx, curposy)
+-- 		self.view:addChild(item)
+-- 		self.spriteInfo[self.curIndex] = item
+-- 		self.curIndex = self.curIndex + 1
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function ListVertical:getIndexItem(index)
+-- 	if #self.spriteInfo < index then
+-- 		return self.spriteInfo[index]
+-- 	else
+-- 		return nil
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------文本类
+-- super_class.Label()
+-- ---------
+-- ---------
+-- local function LabelCreateFunction(self, x, y , text, fontSize)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tText = text
+-- 	local tFontSize = fontSize
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if text == nil then
+-- 		tText = ""
+-- 	end
+-- 	if fontSize == nil then
+-- 		tFontSize = 16
+-- 	end
+-- 	---------
+-- 	self.view = CCZXLabel:labelWithText( tPosX, tPosY, tText, tFontSize)
+-- end
+-- ---------
+-- ---------
+-- function Label:__init(fatherPanel)
+-- 	self.father_panel = fatherPanel
+-- 	self.view = nil
+-- end
+-- ---------
+-- ---------文本类不用接收消息，所以不用注册消息函数
+-- function Label:create(fatherPanel, x, y, text, fontSize)
+-- 	local sprite = Label(fatherPanel)
+-- 	LabelCreateFunction(sprite, x, y, text, fontSize)
+-- 	return sprite
+-- end
+-- ---------
+-- ---------设置文本
+-- function Label:setText(text)
+-- 	if self.view ~= nil then
+-- 		self.view:setText(text)
+-- 	end
+-- end
+-- ---------
+-- ---------设置文本字体大小
+-- function Label:setFontSize(fontSize)
+-- 	if self.view ~= nil then
+-- 		self.view:setFontSize(fontSize)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Label:setPosition(x, y)
+-- 	if self.view ~= nil then
+-- 		self.view:setPosition(x, y)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Label:getPosition()
+-- 	if self.view ~= nil then
+-- 		return self.view:getPositionS()
+-- 	else
+-- 		return {x = 0, y = 0}
+-- 	end
+-- end
+-- ---------
+-- ---------取得文本范围
+-- function Label:getSize()
+-- 	if self.view ~= nil then
+-- 		return self.view:getSize()
+-- 	else
+-- 		return {width = 0, height = 0}
+-- 	end
+-- end
+-- ---------
+-- ---------取得文本内容
+-- function Label:getText()
+-- 	if self.view ~= nil then
+-- 		return self.view:getText()
+-- 	else
+-- 		return ""
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------单选按钮组
+-- super_class.RadioButton(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function RadioButtonCreateFunction(self, width, height, x, y, image, topLeftWidth, topLeftHeight, topRigthWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tImage = image
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then 
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	---------
+-- 	self.view = CCRadioButtonGroup:buttonGroupWithFile( tPosX, tPosY, tWidth, tHeight, tImage, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+
+-- end
+-- ---------
+-- ---------
+-- function RadioButton:__init(fatherPanel, addType)
+-- 	self.click_num = 0
+-- 	if addType == nil then
+-- 		addType = 0
+-- 	end
+-- 	self.add_type = addType
+-- end
+-- ---------
+-- ---------
+-- function RadioButton:create(fatherPanel, x, y, width, height, addType, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local sprite = RadioButton(fatherPanel, addType)
+-- 	RadioButtonCreateFunction(sprite, width, height, x, y, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ---------
+-- ---------
+-- function RadioButton:getCurSelect()
+-- 	if self.view ~= nil then 
+-- 		return self.view:getCurSelect()
+-- 	else
+-- 		return nil
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function RadioButton:selectItem(index)
+-- 	if self.view ~= nil then 
+-- 		self.view:selectItem(index)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function RadioButton:addItem(item, grap, itemSelect)
+-- 	local tSelect
+-- 	local tGrap = grap
+-- 	if grap == nil then
+-- 		tGrap = 0
+-- 	end
+-- 	if itemSelect ~= nil then
+-- 		tSelect = true
+-- 	else
+-- 		tSelect = false
+-- 	end
+-- 	if self.view ~= nil then
+-- 		local tempsprite = self.view:getIndexItem(-1)
+-- 		if tempsprite ~= nil and tempsprite ~= NULL then
+-- 			local temppos = tempsprite:getPositionS()
+-- 			local tempsize = tempsprite:getSize()
+-- 			if self.add_type == 0 then
+-- 				item.view:setPosition(temppos.x + tempsize.width + tGrap, temppos.y)
+-- 			else
+-- 				item.view:setPosition(temppos.x , temppos.y - tempsize.height - tGrap)
+-- 			end
+-- 		else
+-- 			item.view:setPosition(0, self.view:getSize().height - item.view:getSize().height)
+-- 		end
+-- 		self.view:addGroup(item.view, tSelect)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function RadioButton:getCurNum()
+-- 	if self.view ~= nil then
+-- 		return self.view:getCurNum()
+-- 	else
+-- 		return nil
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function RadioButton:getIndexItem(index)
+-- 	if self.view ~= nil then
+-- 		return self.view:getIndexItem(index)
+-- 	else
+-- 		return nil
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------复选按钮
+-- super_class.CheckBox(AbstractBasePanel)
+-- ---------
+-- ---------
+-- function CheckBox:registerScriptFun()
+-- 	if self.view ~= nil then
+-- 		local function checkBoxMessageFun(eventType, arg, msgid, selfItem)
+-- 			-------
+-- 			if eventType == nil then
+-- 				return 
+-- 			end
+-- 			-------
+-- 			if eventType == TOUCH_BEGAN then
+-- 				self.click_num = self.click_num + 1
+-- 				if self.touch_begin_fun ~= nil then
+-- 					self.touch_begin_fun()
+-- 				end
+-- 				if self.click_num % 2 == 0 then
+-- 					self.view:setCurState(CLICK_STATE_UP)
+-- 				else 
+-- 					self.view:setCurState(CLICK_STATE_DOWN)
+-- 				end
+-- 				return self.touch_begin_return
+-- 			elseif eventType == TOUCH_MOVED then
+-- 				if self.touch_move_fun ~= nil then
+-- 					self.touch_move_fun()
+-- 				end
+-- 				return self.touch_move_return
+-- 			elseif eventType == TOUCH_ENDED then
+-- 				if self.touch_end_fun ~= nil then
+-- 					self.touch_end_fun()
+-- 				end
+-- 				if self.click_num % 2 == 0 then
+-- 					self.view:setCurState(CLICK_STATE_UP)
+-- 				else 
+-- 					self.view:setCurState(CLICK_STATE_DOWN)
+-- 				end
+-- 				return self.touch_end_return
+-- 			elseif eventType == TOUCH_CLICK then
+-- 				if self.touch_click_fun ~= nil then
+-- 					self.touch_click_fun()
+-- 				end
+-- 				return self.touch_click_return
+-- 			elseif eventType == TOUCH_DOUBLE_CLICK then
+-- 				if self.touch_double_click_fun ~= nil then
+-- 					self.touch_double_click_fun()
+-- 				end
+-- 				return self.touch_double_click_return
+-- 			elseif eventType == TIMER then
+-- 				if self.touch_timer_fun ~= nil then
+-- 					self.touch_timer_fun()
+-- 				end
+-- 				return true
+-- 			end
+-- 		end
+-- 		-------
+-- 		self.view:registerScriptHandler(checkBoxMessageFun)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- local function CheckBoxCreateFunction(self, width, height, x, y, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tImageUp = ""
+-- 	local tImageDown = nil
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	if type(image) == 'table' and  #image > 1 then
+-- 		tImageUp = image[1]
+-- 		tImageDown = image[2]
+-- 	else
+-- 		tImageUp = image
+-- 	end
+-- 	---------
+-- 	self.view = CCRadioButton:radioButtonWithFile(tPosX, tPosY, tWidth, tHeight, tImageUp, TYPE_MUL_TEX, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+-- 	if tImageDown ~= nil then
+-- 		self.view:addTexWithFile(CLICK_STATE_DOWN, tImageDown)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function CheckBox:__init(fatherPanel)
+-- 	self.click_num = 0
+-- end
+-- ---------
+-- ---------
+-- function CheckBox:create(fatherPanel, x, y, width, height, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local sprite = CheckBox(fatherPanel)
+-- 	CheckBoxCreateFunction(sprite, width, height, x, y, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ---------
+-- ---------添加对应状态图片
+-- function CheckBox:addImage(state, image)
+-- 	if self.view ~= nil then
+-- 		self.view:addTexWithFile(state, image)
+-- 	end
+-- end
+-- ---------
+-- ---------添加对应状态变灰图片
+-- function CheckBox:addGrayImage(state, image)
+-- 	if self.view ~= nil then
+-- 		self.view:addTexWithFileEx(state, TYPE_GRAY, image)
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------后带文字复选按钮
+-- super_class.TextCheckBox(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function TextCheckBoxCreateFunction(self, width, height, x, y, image, text, gapSize, fontSize)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	local tFontSize = fontSize
+-- 	local tImage = image
+-- 	local tText = text
+-- 	local tGapSize = gapSize
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	if fontSize == nil then
+-- 		tFontSize = 16
+-- 	end
+-- 	if text == nil then
+-- 		tText = ""
+-- 	end
+-- 	if gapSize == nil then
+-- 		tGapSize = 0
+-- 	end
+-- 	---------
+-- 	local checkbox = CheckBox:create(nil, 0, 0, tWidth, tHeight, tImage)
+-- 	self.check_button = checkbox
+-- 	local checkboxsize = checkbox:getSize()
+-- 	checkbox.view:setEnableHitTest(false)
+-- 	checkbox:setTouchBeganReturnValue(false)
+-- 	checkbox:setTouchEndedReturnValue(false)
+-- 	checkbox:setTouchClickReturnValue(false)
+-- 	checkbox:setTouchDoubleClickReturnValue(false)
+-- 	local text = Label:create(nil, checkboxsize.width + tGapSize, 0, tText, tFontSize)
+-- 	local textsize = text:getSize()
+-- 	local basepanel = BasePanel:create(self, tPosX, tPosY, checkboxsize.width + textsize.width, checkboxsize.height + textsize.height)
+-- 	basepanel.view:addChild(checkbox.view)
+-- 	basepanel.view:addChild(text.view)
+-- 	self.view = basepanel.view
+-- end
+-- ---------
+-- ---------
+-- function TextCheckBox:__init(fatherPanel)
+-- 	self.check_button = nil
+-- end
+-- ---------
+-- ---------参数说明：x、y代表位置。width、height代表图片长宽,image代表图片路径,text代表文本内容,fontSize代表文本字体字号
+-- function TextCheckBox:create(fatherPanel, x, y, width, height, image, text, gapSize, fontSize)
+-- 	local sprite = TextCheckBox(fatherPanel)
+-- 	TextCheckBoxCreateFunction(sprite, width, height, x, y, image, text, gapSize, fontSize)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ---------
+-- ---------
+-- function TextCheckBox:setTouchClickFun(userFunction)
+-- 	if self.check_button ~= nil then
+-- 		self.check_button:setTouchClickFun(userFunction)
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------文字图像
+-- super_class.TextImage(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function TextImageCreateFunction(self, width, height, x, y, text, image, fontSize, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tTopLeftWidth = topLeftWidth
+-- 	local tTopLeftHeight = topLeftHeight
+-- 	local tTopRightWidth = topRightWidth
+-- 	local tTopRightHeight = topRightHeight
+-- 	local tBottomLeftWidth = bottomLeftWidth
+-- 	local tBottomLeftHeight = bottomLeftHeight
+-- 	local tBottomRightWidth = bottomRightWidth
+-- 	local tBottomRightHeight = bottomRightHeight
+-- 	local tFontSize = fontSize
+-- 	local tImage = image
+-- 	local tText = text
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if image == nil then
+-- 		tImage = ""
+-- 	end
+-- 	if topLeftWidth == nil then
+-- 		tTopLeftWidth = 0
+-- 	end
+-- 	if topLeftHeight == nil then
+-- 		tTopLeftHeight = 0
+-- 	end
+-- 	if topRightWidth == nil then
+-- 		tTopRightWidth = 0
+-- 	end
+-- 	if topRightHeight == nil then
+-- 		tTopRightHeight = 0
+-- 	end
+-- 	if bottomLeftWidth == nil then
+-- 		tBottomLeftWidth = 0
+-- 	end
+-- 	if bottomLeftHeight == nil then
+-- 		tBottomLeftHeight = 0
+-- 	end
+-- 	if bottomRightWidth == nil then
+-- 		tBottomRightWidth = 0
+-- 	end
+-- 	if bottomRightHeight == nil then
+-- 		tBottomRightHeight = 0
+-- 	end
+-- 	if fontSize == nil then
+-- 		tFontSize = 16
+-- 	end
+-- 	if text == nil then
+-- 		tText = ""
+-- 	end
+-- 	---------
+-- 	local label = Label:create(nil, 0, 0, tText, tFontSize)
+-- 	local labelsize = label:getSize()
+-- 	local image = Image:create(nil, tPosX, tPosY, tWidth, tHeight, tImage, tTopLeftWidth, tTopLeftHeight, tTopRightWidth, tTopRightHeight, tBottomLeftWidth, tBottomLeftHeight, tBottomRightWidth, tBottomRightHeight)
+-- 	local imagesize = image:getSize()
+-- 	label:setPosition( (imagesize.width - labelsize.width) / 2, (imagesize.height - labelsize.height) / 2 )
+-- 	image.view:addChild(label.view)
+-- 	self.view = image.view
+-- end
+-- ---------
+-- ---------
+-- function TextImage:__init(fatherPanel)
+-- end
+-- ---------
+-- ---------
+-- function TextImage:create(fatherPanel, x, y, width, height, text, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	local sprite = TextImage(fatherPanel)
+-- 	TextImageCreateFunction( sprite, width, height, x, y, text, image, topLeftWidth, topLeftHeight, topRightWidth, topRightHeight, bottomLeftWidth, bottomLeftHeight, bottomRightWidth, bottomRightHeight)
+-- 	return sprite
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------滑动条
+-- super_class.Scroll(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function ScrollCreateFunction(self, width, height, x, y, maxnum, scrollType, gapSize)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width
+-- 	local tHeight = height
+-- 	local tMaxNum = maxnum
+-- 	local tType = scrollType
+-- 	local tGapSize = gapSize
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = 0
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if maxnum == nil then
+-- 		tMaxNum = 1 
+-- 	end
+-- 	if scrollType == nil then
+-- 		tType = TYPE_VERTICAL_EX
+-- 	end
+-- 	if gapSize == nil then
+-- 		tGapSize = 0
+-- 	end
+-- 	---------
+-- 	self.view = CCScrollEx:scrollWithFile( 0, 0, tWidth, tHeight, tMaxNum, tType, tGapSize)
+-- 	-- local imageInfo = {x = 0, y = 0, width = 0, height = 0, image = "ui/common/progress_green.png"}
+-- 	-- if tType == TYPE_VERTICAL then
+-- 	-- 	imageInfo.width = tWidth
+-- 	-- 	imageInfo.height = 10
+-- 	-- 	imageInfo.x = 0
+-- 	-- 	imageInfo.y = tPosY - imageInfo.height
+-- 	-- else
+-- 	-- 	imageInfo.width = 10
+-- 	-- 	imageInfo.height = tHeight
+-- 	-- 	imageInfo.x = tPosX + tWidth
+-- 	-- 	imageInfo.y = 0
+-- 	-- end
+-- 	-- self.scrollImage = CCZXImage:imageWithFile(imageInfo.x, imageInfo.y, imageInfo.width, imageInfo.height, imageInfo.image, 900, 900)
+-- 	-- ---------
+-- 	-- self.view = CCBasePanel:panelWithFile(tPosX, tPosY, tWidth + imageInfo.width, tHeight + imageInfo.height)
+-- 	-- ---------
+-- 	-- self.view:addChild(self.scrollImage)
+-- 	-- self.view:addChild(self.scrollItem)
+-- end
+-- ---------
+-- ---------
+-- function Scroll:registerScriptFun()
+-- 	if self.view ~= nil then
+-- 		local function scrollMessageFun(eventType, arg, msgid, selfItem)
+-- 			-------
+-- 			if eventType == nil or arg == nil then
+-- 				return 
+-- 			end
+-- 			-------
+-- 			if eventType == TOUCH_BEGAN then
+-- 				if self.touch_begin_fun ~= nil then
+-- 					self.touch_begin_fun()
+-- 				end
+-- 				return self.touch_begin_return
+-- 			elseif eventType == TOUCH_MOVED then
+-- 				if self.touch_move_fun ~= nil then
+-- 					self.touch_move_fun()
+-- 				end
+-- 				return self.touch_move_return
+-- 			elseif eventType == TOUCH_ENDED then
+-- 				if self.touch_end_fun ~= nil then
+-- 					self.touch_end_fun()
+-- 				end
+-- 				return self.touch_end_return
+-- 			elseif eventType == TOUCH_CLICK then
+-- 				if self.touch_click_fun ~= nil then
+-- 					self.touch_click_fun()
+-- 				end
+-- 				return self.touch_click_return
+-- 			elseif eventType == TOUCH_DOUBLE_CLICK then
+-- 				if self.touch_double_click_fun ~= nil then
+-- 					self.touch_double_click_fun()
+-- 				end
+-- 				return self.touch_double_click_return
+-- 			elseif eventType == TIMER then
+-- 				if self.touch_timer_fun ~= nil then
+-- 					self.touch_timer_fun()
+-- 				end
+-- 				return true
+-- 			elseif eventType == SCROLL_CREATE_ITEM then
+-- 				require "utils/Utils"
+-- 				local temp = Utils:Split(arg, ",")
+-- 				local xOrder = temp[1]
+-- 				local yOrder = temp[2]
+-- 				if self.scrollCreateFun ~= nil then
+-- 					local item = self.scrollCreateFun(xOrder)
+-- 					self.view:addItem(item)
+-- 					self.view:refresh()
+-- 				end
+-- 				return true
+-- 			end
+-- 		end
+-- 		-------
+-- 		self.view:registerScriptHandler(scrollMessageFun)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:__init(fatherPanel)
+-- 	self.scrollImage = nil
+-- 	self.scrollCreateFun = nil
+-- end
+-- ---------
+-- ---------
+-- function Scroll:create(fatherPanel, x, y, width, height, maxnum, type, gapSize)
+-- 	local sprite = Scroll(fatherPanel)
+-- 	ScrollCreateFunction( sprite, width, height, x, y, maxnum, type, gapSize)
+-- 	sprite:registerScriptFun()
+-- 	return sprite
+-- end
+-- ---------
+-- ---------
+-- function Scroll:setScrollCreatFunction(userFunction)
+-- 	self.scrollCreateFun = userFunction
+-- end
+-- ---------
+-- ---------
+-- function Scroll:setScrollImagePos(x, y)
+-- 	if self.view ~= nil then
+-- 		self.view:setScrollImagePos(x,y)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:setScrollImageVisible(visible)
+-- 	if self.view ~= nil then
+-- 		self.view:setScrollImageVisible(visible)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:setScrollImageFile(image)
+-- 	if self.view ~= nil then
+-- 		self.view:setScrollImageFile(image)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:setCurIndexPage(index)
+-- 	if self.view ~= nil then
+-- 		self.view:setCurIndexPage(index)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:setScrollRunType(type)
+-- 	if self.view ~= nil then
+-- 		self.view:setScrollRunType(type)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:getMaxNum()
+-- 	if self.view ~= nil then
+-- 		return self.view:getMaxNum()
+-- 	else
+-- 		return 0
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:getScrollImagePos()
+-- 	if self.view ~= nil then
+-- 		return self.view:getScrollImagePos()
+-- 	else
+-- 		return {x = 0, y = 0}
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:getScrollImageVisible()
+-- 	if self.view ~= nil then
+-- 		return self.view:getScrollImageVisible()
+-- 	else
+-- 		return false
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:getCurIndexPage()
+-- 	if self.view ~= nil then
+-- 		return self.view:getCurIndexPage()
+-- 	else
+-- 		return 0
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:refresh()
+-- 	if self.view ~= nil then
+-- 		self.view:refresh()
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:addItem(item)
+-- 	if self.view ~= nil then
+-- 		self.view:addItem(item)
+-- 	end
+-- end
+-- ---------
+-- ---------
+-- function Scroll:clear()
+-- 	if self.view ~= nil then
+-- 		self.view:clear()
+-- 	end
+-- end
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------dialog
+-- super_class.Dialog(AbstractBasePanel)
+-- ---------
+-- ---------
+-- local function DialogCreateFunction(self, width, height, x, y, addType, num)
+-- 	local tPosX = x
+-- 	local tPosY = y
+-- 	local tWidth = width 
+-- 	local tHeight = height
+-- 	local tAddType = addType 
+-- 	local tNum = num
+-- 	if x == nil then
+-- 		tPosX = 0
+-- 	end
+-- 	if y == nil then
+-- 		tPosY = 0
+-- 	end
+-- 	if width == nil then
+-- 		tWidth = width
+-- 	end
+-- 	if height == nil then
+-- 		tHeight = 0
+-- 	end
+-- 	if addType == nil then
+-- 		tAddType = ADD_LIST_DIR_UP
+-- 	end
+-- 	if num == nil then
+-- 		maxnum = 1
+-- 	end
+-- 	---------
+-- 	self.view = CCDialogEx:dialogWithFile( tPosX, tPosY, tWidth, tHeight, tMaxNum, "", TYPE_VERTICAL, tType)
+-- end
+-- ---------
+-- ---------
+-- function Dialog:__init(fatherPanel)
+-- end
+-- ---------
+-- ---------
+-- function Dialog:create(fatherPanel, x, y, width, height, addType, num)
+-- 	local sprite = Dialog(fatherPanel)
+-- 	DialogCreateFunction(sprite, width, height, x, y, addType, num)
+-- 	return sprite
+-- end
+-- ---------
+-- ---------
+-- ----------------------------------------------------------------------
+-- ----------------------------------------------------------------------
+-- ---------
+-- ---------hyperlink
+-- --super_class.HyperLink

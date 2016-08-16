@@ -1,0 +1,307 @@
+-- -------------------
+-- ----HJH
+-- ----2013-1-12
+-- ----重封控件类
+-- -------------------
+-- -------HJH
+-- -------2013-1-12
+-- -------带文字单选按钮
+-- -------参数说明:
+-- -------x,y:位置
+-- -------perspace:空格大小
+-- -------image:单选按钮图片,是一个表,表中第一个代表未选中状态,第二个代表选中状态
+-- -------fontarg:单选按钮字内容,是一个表
+-- -------num:按钮数量
+-- -------msgfunction:消息处理函数
+-- -------msgid:自定义消息开始值
+-- super_class.BasePanel()
+-- ---------------
+-- -------
+-- function BasePanel:__init(fatherPanel)
+-- 	self.father_panel = fatherPanel
+-- 	self.view = nil
+-- 	-- self.view = CCBasePanel:panelWithFile(x, y, width, height, file, topLeftW, topLeftH, topRightW, topRightH, bottomLeftW, bottomLeftH, bottomRightW, bottomRightH)
+-- 	-- self.view:setMessageIndex(msgId)
+-- 	-- return self.view
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:create(fatherPanel)
+-- 	local panel = BasePanel(fatherPanel)
+-- 	-- return panel
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setPos(x, y)
+-- 	if self.view ~= nil then
+-- 		self.view:setPosition(x, y)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setSize(width, height)
+-- 	if self.view ~= nil then
+-- 		self.view:setSize(width, height)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setImage(file)
+-- 	if self.view ~= nil then
+-- 		self.view:setTexture(file)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setAnchorPoint(x, y)
+-- 	if self.view ~= nil then
+-- 		self.view:setAnchorPoint(x, y)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setFlipX(flip)
+-- 	if self.view ~= nil then
+-- 		self.view:setFlipX(flip)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setFlipY(filp)
+-- 	if self.view ~= nil then
+-- 		self.view:setFlipY(flip)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setColor(color)
+-- 	if self.view ~= nil then
+-- 		self.view:setColor(color)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setTimer(rate)
+-- 	if self.view ~= nil then
+-- 		self.view:setTimer(rate)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:setMessageId(msg)
+-- 	if self.view ~= nil then
+-- 		self.view:setMessageIndex(msg)
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:getPos()
+-- 	if self.view ~= nil then
+-- 		return self.view:getPositionS()
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:getSize()
+-- 	if self.view ~= nil then
+-- 		return self.view:getSize()
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:getColor()
+-- 	if self.view ~= nil then
+-- 		return self.view:getColor()
+-- 	end
+-- end
+-- ---------------
+-- -------
+-- function BasePanel:getMessageId()
+-- 	if self.view ~= nil then
+-- 		return self.view:getMessageIndex()
+-- 	end
+-- end
+-- ---------------
+-- --------
+-- function BasePanel:registerScriptHandler(msgFunction, child)
+-- 	if self.view ~= nil then
+-- 		self.view:registerScriptHandler(msgFunction)
+-- 		if child == true then
+-- 			self.view:registerChildScriptHandler()
+-- 		end
+-- 	end
+-- end
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+-- -------HJH
+-- -------2013-1-12
+-- -------带文字单选按钮
+-- -------参数说明:
+-- -------x,y:位置
+-- -------perspace:空格大小
+-- -------image:单选按钮图片,是一个表,表中第一个代表未选中状态,第二个代表选中状态
+-- -------fontarg:单选按钮字内容,是一个表
+-- -------num:按钮数量
+-- -------msgfunction:消息处理函数
+-- -------msgid:自定义消息开始值
+-- super_class.RadioTextButton(BasePanel)
+-- function RadioTextButton:__init(fatherPanel, msgId, x, y, perSpace, image, fontArg, fontSize)
+-- 	--self.view:release()
+-- 	local radioButtonGropWidth = 0
+-- 	local radioButtonGropHeight = 0
+-- 	local buttonGroup = {}
+-- 	local labelGroup = {}
+-- 	local curPosX = 0
+-- 	local curPosY = 0
+-- 	local btnNormal = 0
+-- 	local btnSelect = 0
+-- 	-- if #fontArg < num then
+-- 	-- 	return
+-- 	-- end
+-- 	if #image >= 2 then
+-- 		btnNormal = image[1]
+-- 		btnSelect = image[2]
+-- 	else
+-- 		btnNormal = image
+-- 		btnSelect = image
+-- 	end
+-- 	for i = 1, #fontArg do
+-- 		local button = CCNGBtnMulTex:buttonWithFile(curPosX, curPosY, 0, 0, btnNormal)
+-- 		button:addTexWithFile(CLICK_STATE_DOWN, btnSelect)
+-- 		button:setMessageIndex(msgId + i)
+-- 		--buttonGroup[i]:registerScriptHandler(msgfunction)
+-- 		local buttonSize = button:getSize()
+-- 		curPosX = curPosX + buttonSize.width
+-- 		radioButtonGropWidth = radioButtonGropWidth + curPosX + buttonSize.width
+-- 		radioButtonGropHeight = buttonSize.height
+-- 		local label = CCZXLabel:labelWithText(curPosX, curPosY, fontArg[i], fontSize)
+-- 		local labelSize = label:getSize()
+-- 		curPosX = curPosX + labelSize.width + perSpace
+-- 		radioButtonGropWidth = radioButtonGropWidth + labelSize.width + perSpace
+-- 		buttonGroup[i] = button
+-- 		labelGroup[i] = label
+-- 		-- self.view:addGroup(button)
+-- 		-- self.view:addChild(label)
+-- 	end
+-- 	local radioButtonGroup = CCRadioButtonGroup:buttonGroupWithFile(x, y, radioButtonGropWidth, radioButtonGropHeight, "")
+-- 	radioButtonGroup:setMessageIndex(msgId)
+-- 	self.view = radioButtonGroup
+-- 	for i = 1 , #buttonGroup do
+-- 		self.view:addGroup(buttonGroup[i])
+-- 	end
+-- 	for i = 1 , #labelGroup do
+-- 		self.view:addChild(labelGroup[i])
+-- 	end
+-- 	self.view:setChildScriptHadler(true)
+-- 	--radioButtonGroup:registerScriptHandler(msgfunction)	
+-- 	return self.view
+-- end
+-- -------
+-- function RadioTextButton:create(fatherPanel, msgId, x, y, perSpace, image, fontArg, fontSize)
+-- 	local window = RadioTextButton(fatherPanel, msgId, x, y, perSpace, image, fontArg, fontSize)
+-- 	return window
+-- end
+-- -------
+-- function RadioTextButton:getCurSelect()
+-- 	return self.view:getCurSelect()
+-- end
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+-- -------HJH
+-- -------2013-1-12
+-- -------普通按钮
+-- -------参数说明:
+-- -------x,y:位置
+-- -------image:单选按钮图片,是一个表,表中第一个代表未选中状态,第二个代表选中状态
+-- -------msgid:自定义消息开始值
+-- -------width,height:按钮图片宽和高
+-- super_class.Button(BasePanel)
+-- function Button:__init(fatherPanel, msgId, x, y, image, width, height)
+-- 	--self.view:release()
+-- 	local btnNormal = 0
+-- 	local btnNormalGray = 0
+-- 	local btnSelect = 0
+-- 	local btnSelectGray = 0
+-- 	if #image < 2 then
+-- 		btnNormal = image
+-- 		btnSelect = image
+-- 	else
+-- 		btnNormal = image[1]
+-- 		btnSelect = image[2]
+-- 		-- if #image[1] < 2 then
+-- 		-- 	--print("#image[1]< 2")
+-- 		-- 	btnNormal = image[1]
+-- 		-- else
+-- 		-- 	--print("#image[1] >=2")
+-- 		-- 	btnNormal = image[1][1]
+-- 		-- 	btnNormalGray = image[1][2]
+-- 		-- end
+-- 		-- if #image[2] < 2 then
+-- 		-- 	--print("#image[2] < 2")
+-- 		-- 	btnSelect = image[2]
+-- 		-- else
+-- 		-- 	--print("#image[2] >= 2")
+-- 		-- 	bntSelect = image[2][1]
+-- 		-- 	btnNormalGray = image[2][2]
+-- 		-- end
+-- 	end
+-- 	self.view = CCNGBtnMulTex:buttonWithFile(x, y, width, height, btnNormal)
+-- 	if btnNormalGray ~= 0 then
+-- 		self.view:addTexWithFileEx(CLICK_STATE_UP, btnNormal)
+-- 	end
+-- 	if btnSelectGray ~= 0 then
+-- 		self.view:addTexWithFileEx(CLICK_STATE_DOWN, btnSelect)
+-- 	else
+-- 		self.view:addTexWithFile(CLICK_STATE_DOWN, btnSelect)
+-- 	end
+-- 	self.view:setMessageIndex(msgId)
+-- 	self.view:setChildScriptHadler(true)
+-- 	return button
+-- end
+-- -------
+-- function Button:create(fatherPanel, msgId, x, y, image, width, height)
+-- 	local window = Button(fatherPanel, msgId, x, y, image, width, height)
+-- 	return window
+-- end
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
+-- -------HJH
+-- -------2013-1-12
+-- -------普通按钮
+-- -------参数说明:
+-- -------x,y:位置
+-- -------text:文本内容
+-- -------image:单选按钮图片,是一个表,表中第一个代表未选中状态,第二个代表选中状态
+-- -------msgid:自定义消息开始值
+-- -------width,height:按钮图片宽和高
+-- super_class.TextButtonS()
+-- function TextButtonS:__init(msgid, x, y, text, image ,width, height)
+-- 	local image_select = ""
+-- 	local image_normal = ""
+-- 	if #image >= 2 then
+-- 		image_normal = image[1]
+-- 		image_select = image[2]
+-- 	else
+-- 		image_normal = image
+-- 		image_select = image
+-- 	end
+-- 	self.view = CCTextButton:textButtonWithFile(x, y, width, height, text, image_normal)
+-- 	self.view:addTexWithFile(CLICK_STATE_DOWN, image_select)
+-- 	self.view:setMessageIndex(msgid)
+-- 	self.view:setChildScriptHadler(true)
+-- 	return self.view
+-- end
+-- -------
+-- function TextButtonS:create(fatherPanel, msgId, x, y, text, image, width, height)
+-- 	local window = TextButton(msgId, x, y, text, image, width, height)
+-- 	return window
+-- end
+-- ------
+-- function TextButtonS:setText(arg)
+-- 	if self.view ~= nil then
+-- 		self.view:setText(arg)
+-- 	end
+-- end

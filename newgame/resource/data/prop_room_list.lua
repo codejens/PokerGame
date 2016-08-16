@@ -1,0 +1,108 @@
+prop_room_list = {
+	[1] = { --初级
+		{
+			name = "点石成金",
+			room_num = 10,
+			min_blinds = 50,
+			max_blinds = 100,
+			player_num = 9,
+			min_money = 1000,
+			max_money = 20000,
+		},
+		{
+			name = "财运亨通",
+			room_num = 5,
+			min_blinds = 25,
+			max_blinds = 50,
+			player_num = 9,
+			min_money = 500,
+			max_money = 10000,
+		},
+		{
+			name = "丰衣足食",
+			room_num = 2,
+			min_blinds = 10,
+			max_blinds = 20,
+			player_num = 5,
+			min_money = 200,
+			max_money = 4000,
+		},
+	[2] = {
+		--中级
+		{
+			name = "达官贵人",
+			room_num = 10,
+			min_blinds = 1000,
+			max_blinds = 2000,
+			player_num = 5,
+			min_money = 20000,
+			max_money = 400000,
+		},
+		{
+			name = "富甲一方",
+			room_num = 8,
+			min_blinds = 500,
+			max_blinds = 1000,
+			player_num = 9,
+			min_money = 10000,
+			max_money = 100000,
+		},
+		{
+			name = "家财万贯",
+			room_num = 5,
+			min_blinds = 250,
+			max_blinds = 500,
+			player_num = 5,
+			min_money = 5000,
+			max_money = 100000,
+		},
+		{
+			name = "锦衣玉食",
+			room_num = 2,
+			min_blinds = 100,
+			max_blinds = 200,
+			player_num = 5,
+			min_money = 2000,
+			max_money = 40000,
+		},
+	}
+	[2] = {
+		--高级
+		{
+			name = "皇家圣殿",
+			room_num = 10,
+			min_blinds = 500000,
+			max_blinds = 1000000,
+			player_num = 5,
+			min_money = 100000000,
+			max_money = 200000000,
+		},
+		{
+			name = "巴塞罗那",
+			room_num = 8,
+			min_blinds = 50000,
+			max_blinds = 100000,
+			player_num = 5,
+			min_money = 1000000,
+			max_money = 20000000,
+		},
+		{
+			name = "澳门莲花",
+			room_num = 5,
+			min_blinds = 500000,
+			max_blinds = 1000000,
+			player_num = 5,
+			min_money = 100000000,
+			max_money = 200000000,
+		},
+		{
+			name = "拉斯维加斯",
+			room_num = 2,
+			min_blinds = 100,
+			max_blinds = 200,
+			player_num = 5,
+			min_money = 2000,
+			max_money = 40000,
+		},
+	}
+}

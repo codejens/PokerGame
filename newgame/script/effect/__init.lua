@@ -1,0 +1,12 @@
+require "effect/LuaEffectManager"
+require "effect/FlowerEffect"
+require "effect/TextEffect"
+require "effect/SpecialSceneEffect"
+require "effect/AttEffect"
+require "effect/LineEffect"
+require "effect/SEffectBuilder"
+require "effect/SEffectAction"
+
+-- require "effect/STaskTipsEffect"
+require "effect/expeffect"
+require "effect/SFlowerEffect"
