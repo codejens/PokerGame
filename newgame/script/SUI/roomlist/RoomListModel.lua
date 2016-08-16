@@ -16,4 +16,5 @@ end
 function RoomListModel:get_win_name()
 	return self.win_name
 end
+
 RoomListModel:init()

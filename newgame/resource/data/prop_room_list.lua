@@ -27,6 +27,7 @@ prop_room_list = {
 			min_money = 200,
 			max_money = 4000,
 		},
+	},
 	[2] = {
 		--中级
 		{
@@ -65,8 +66,8 @@ prop_room_list = {
 			min_money = 2000,
 			max_money = 40000,
 		},
-	}
-	[2] = {
+	},
+	[3] = {
 		--高级
 		{
 			name = "皇家圣殿",
@@ -104,5 +105,5 @@ prop_room_list = {
 			min_money = 2000,
 			max_money = 40000,
 		},
-	}
+	},
 }

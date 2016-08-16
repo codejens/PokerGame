@@ -41,6 +41,7 @@ __init_sui[5] = function ()
 require "SUI/roomlist/RoomListModel"
 require "SUI/roomlist/RoomListWin"
 require "SUI/roomlist/RoomListCC"
+require "SUI/roomlist/RoomListConfig"
 -- require "SUI/contact/friendMiscPage/SFriendCommonWin"
 -- require "SUI/contact/friendMiscPage/SGetKeyWin"
 -- require "SUI/contact/friendMiscPage/SGiveFlowerLogWin"

@@ -445,7 +445,6 @@ end
 
 -- 实现table的深拷贝
 function Utils:table_deepcopy(ori_table)
-    
     local function th_table_dup(ori_tab)
         if (type(ori_tab) ~= "table") then
             return nil
