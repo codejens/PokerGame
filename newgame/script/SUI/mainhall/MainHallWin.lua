@@ -4,6 +4,7 @@ super_class.MainHallWin(BaseEditWin)
 
 function MainHallWin:__init()
 	print("MainWin:__init()")
+	GameModel:req_enter_game(GameConfig.QUICK_GAME)
 end
 
 function MainHallWin:init(is_fini)

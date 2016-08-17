@@ -17,8 +17,8 @@ end
 function RoomListWin:save_widget()
 	self:init()
 	self.array_btn_main_room[1] = self:get_widget_by_name("btn_chuji")
-	self.array_btn_main_room[1] = self:get_widget_by_name("btn_zhongji")
-	self.array_btn_main_room[1] = self:get_widget_by_name("btn_gaoji")
+	self.array_btn_main_room[2] = self:get_widget_by_name("btn_zhongji")
+	self.array_btn_main_room[3] = self:get_widget_by_name("btn_gaoji")
 	self.btn_back = self:get_widget_by_name("btn_back")
 	self.scroll_room_list = self:get_widget_by_name("scroll_room_list")
 end
@@ -33,7 +33,7 @@ end
 function RoomListWin:update_scroll()
 	if self.scroll_room_list then
 		local max_count = #self.room_list_config
-		self.scroll_room_list:update(max_count)
+		self.scroll_room_list:update(max_count) 
 	end
 end
 
@@ -69,14 +69,13 @@ function RoomListWin:registered_envetn_func()
 	for main_id , btn in pairs(self.array_btn_main_room) do
 		btn:set_click_func(bind(array_btn_main_room_func,main_id))
 	end
-
 end
 
 function RoomListWin:create_scroll_cell(index)
 	local cell_data = self.room_list_config[index]
 	local panel = SPanel:quick_create(0,0,w,h,"sui/common/unselected_panel_2.png",true)
 	if cell_data then
-		SLabel:quick_create(cell_data.name .. index,50,50,panel)
+		SLabel:quick_create(cell_data.name .. index,50,0,panel)
 	end
 	return panel.view
 end

@@ -59,7 +59,7 @@ login_win = {
 78,	},
 },
 
-{	img_n="sui/login/login_bg.png",
+{	img_n="nopack/hall_function_bg.jpg",
 	flip={	false,		false,	},
 	parent="win_root",
 	class="SPanel",

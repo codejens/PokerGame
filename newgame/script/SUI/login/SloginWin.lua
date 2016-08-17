@@ -103,6 +103,7 @@ function loginWin:__init()
     self.huaba_effect = p1
     self.view:addChild(p1,100)
     local s = self.view:getContentSize()
+	self:quick_game()
 end
 
 -- 获取UI控件
@@ -171,15 +172,15 @@ function loginWin:save_widget()
 	-- 外网测试按钮
 	-- self.out_net_btn = self:get_widget_by_name("out_net_btn")
 	
-	--登录界面背景
-	-- self.loginBg = CCZXImage:imageWithFile(panelWidth/2, panelHeight/2, -1, -1, "nopack/loginBg.jpg", 0, 0)
-	-- self.loginBg:setAnchorPoint(0.5, 0.5)
-	-- local size   = self.loginBg:getSize()
- --    local scalex = panelWidth/size.width
- --    local scaley = panelHeight/size.height
- --    local scale  = math.max(scalex, scaley)
- --    self.loginBg:setScale(scale)
-	-- self.view:addChild(self.loginBg, -1)
+	-- 登录界面背景
+	self.loginBg = CCZXImage:imageWithFile(panelWidth/2, panelHeight/2, -1, -1, "nopack/hall_function_bg.jpg", 0, 0)
+	self.loginBg:setAnchorPoint(0.5, 0.5)
+	local size   = self.loginBg:getSize()
+    local scalex = panelWidth/size.width
+    local scaley = panelHeight/size.height
+    local scale  = math.max(scalex, scaley)
+    self.loginBg:setScale(scale)
+	self.view:addChild(self.loginBg, -1)
 
 	--版本号背景面板
 	self.versionPanel = self:get_widget_by_name("panel_3")
@@ -217,7 +218,8 @@ function loginWin:quick_game()
 	-- 初始化UI节点模块
 	UIManager:init(root)				-- 初始化UI
 
-	UIManager:destroy_window("login_win")
+	-- UIManager:destroy_window("login_win")
+	RoleModel:destroy_login_win()
 	UIManager:show_window("main_hall_win")
 end
 

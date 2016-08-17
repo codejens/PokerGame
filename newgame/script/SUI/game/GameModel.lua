@@ -5,11 +5,11 @@ function GameModel:init()
 	print("GameModel:init")
 end
 
-function GameModel:show_game_win()
+function GameModel:show_win()
 	UIManager:show_window(self.win_name)
 end
 
-function GameModel:close_game_win()
+function GameModel:close_win()
 	UIManager:hide_window(self.win_name)
 end
 
@@ -20,7 +20,7 @@ end
 function GameModel:set_cur_room_data(data)
 	self.room_data = data
 	MainHallModel:close_mainhall_win()
-	self:show_game_win()
+	self:show_win()
 end
 
 function GameModel:get_cur_player_array()

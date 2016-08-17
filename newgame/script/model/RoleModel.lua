@@ -147,20 +147,31 @@ function RoleModel:show_login_win(root)
 	_lock_callback = callback:new()
 	if _login_win == nil then
 		--新的登录界面
-		require "SUI/login/SloginWin"
-		_login_win = loginWin("login_win", nil, nil, GameScreenConfig.ui_screen_width, GameScreenConfig.ui_screen_height, nil, "login_win")
-		local root_view = root:getUINode()
-		local function ui_main_msg_fun(eventType, x, y)
-			if eventType == CCTOUCHBEGAN then 
-				return true
-			elseif eventType == CCTOUCHENDED then
-				return true
-			end
-		end
-		root_view:registerScriptTouchHandler(ui_main_msg_fun, false, 0, false)
-		root_view:addChild(_login_win.view, 1)
+		-- require "SUI/login/SloginWin"
+		-- _login_win = loginWin("login_win", nil, nil, GameScreenConfig.ui_screen_width, GameScreenConfig.ui_screen_height, nil, "login_win")
+		-- local root_view = root:getUINode()
+		-- local function ui_main_msg_fun(eventType, x, y)
+		-- 	if eventType == CCTOUCHBEGAN then 
+		-- 		return true
+		-- 	elseif eventType == CCTOUCHENDED then
+		-- 		return true
+		-- 	end
+		-- end
+		-- root_view:registerScriptTouchHandler(ui_main_msg_fun, false, 0, false)
+		-- root_view:addChild(_login_win.view, 1)
+
+		local root = GameStateManager:get_game_root()
+
+		--SceneLoadingWin:show_instance(nil,100,100)
+		-- 初始化UI节点模块
+		UIManager:init(root)				-- 初始化UI
+
+		-- UIManager:destroy_window("login_win")
+		-- RoleModel:destroy_login_win()
+		UIManager:show_window("main_hall_win")
+		
 	end
-	_login_win:active(true)
+	-- _login_win:active(true)
 	self.password_changed = false
 end
 

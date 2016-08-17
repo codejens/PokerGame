@@ -31,21 +31,22 @@ local list_desc = {
 }
 
 function SceneLoadingWin:__init(window_name, textrue)
+    local max_width = 1366
     local centre_h = GameScreenConfig.ui_screen_height-99
-    local centre_w = centre_h/541*1366
+    local centre_w = centre_h/541*max_width
     local down_h   = 99
     local add_h    = 0
-    if GameScreenConfig.ui_screen_width/centre_w < 960/1366 then
-        centre_w = GameScreenConfig.ui_screen_width/(960/1366)
-        centre_h = centre_w/1366*541
+    if GameScreenConfig.ui_screen_width/centre_w < 960/max_width then
+        centre_w = GameScreenConfig.ui_screen_width/(960/max_width)
+        centre_h = centre_w/max_width*541
         down_h   = GameScreenConfig.ui_screen_height-centre_h
         add_h    = down_h-99
     end
     print("centre_w=",centre_w)
     -- local num   = self:get_random()
-    -- self.centre = CCBasePanel:panelWithFile(_screenWidth/2, down_h, centre_w, centre_h, "ui2/update/loading_bg_"..num..".jpg")
-    -- self.centre:setAnchorPoint(0.5, 0)
-    -- self.view:addChild(self.centre)
+    self.centre = CCBasePanel:panelWithFile(_screenWidth/2, down_h, centre_w, centre_h, "nopack/sceneloading.jpg")
+    self.centre:setAnchorPoint(0.5, 0)
+    self.view:addChild(self.centre)
 
     -- self.bg_down1 = CCBasePanel:panelWithFile(0, 0, _screenWidth/2+1, down_h+19, "ui2/update/down_bg.png", 500, 500)
     -- self.bg_down1:setAnchorPoint(0, 0)

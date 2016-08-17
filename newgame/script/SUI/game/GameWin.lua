@@ -27,6 +27,9 @@ function GameWin:init(is_fini)
 	self.define_makers_pos = 1
 	self.player_array = {}--GameModel:get_cur_player_array()
 	self.panel_player_array = {}
+
+	self.width =  UIScreenPos.relativeWidth(1.0)
+	self.height = UIScreenPos.relativeHeight(1.0)
 	if is_fini then
 
 	end
@@ -39,6 +42,17 @@ end
 
 function GameWin:save_widget()
 	self:init()
+	self.btn_back = self:get_widget_by_name("btn_back")
+	self.winRoot = self:get_widget_by_name("win_root")
+	self.panel_1 = self:get_widget_by_name("panel_1")
+	self.winRoot:setSize(self.width,self.height)
+
+	local bg = SPanel:quick_create(0,0,-1,-1,"nopack/room_bg.jpg",false,self.winRoot,0)
+	-- bg:setAnchorPoint(0.5,0.5)
+	self.btn_back:removeFromParentAndCleanup(true)
+	bg:addChild(self.btn_back)
+	self.btn_back:setPosition(0,self.btn_back.layout.pos[2])
+	self.panel_1:setPosition(self.width/2-960/2,self.height/2-640/2)
 end
 
 --创建主/庄家
@@ -77,7 +91,7 @@ function GameWin:create_player(player_info)
 	}
 	print("player_info.index=",player_info.index)
 	local panel_player = SPanel:create_by_layout(layout)
-	self:addChild(panel_player)
+	self.panel_1:addChild(panel_player)
 
 	--名字
 	local name = player_info.name
@@ -135,18 +149,19 @@ function GameWin:make_deal_action(to_index)
 	pos = form_pos,
 	}
 	local img_poker = SImage:create_by_layout(layout)
-	self:addChild(img_poker)
+	self.panel_1:addChild(img_poker)
 	local arg = {
 		x = to_pos[1],
 		y = to_pos[2],
 		time = 0.2,
 	}
 	local sp_action = transition.moveTo(img_poker,arg)
-	
 	-- transition.moveTo()
-
 end
 
 function GameWin:registered_envetn_func()
-
+	local function btn_back_func()
+		GameModel:close_win()
+	end
+	self.btn_back:set_click_func(btn_back_func)
 end
