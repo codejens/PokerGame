@@ -8,11 +8,22 @@
 
 function GameLogicCC:login_game()
 	local account = "test_1"
-	local server_ip = "127.0.0.1"
-    local server_port = "12004"
+	local server_ip = "192.168.1.53"
+    local server_port = 9101
     local password = "e10adc3949ba59abbe56e057f20f883e"
-   	local server_id = 1
-    NetManager:connect( account, password, server_ip, server_id, server_port )
+   	local server_id = 18
+    -- NetManager:connect( account, password, server_ip, server_id, server_port )
+
+ --    local function back_func()
+
+
+	--     local pack = NetManager:get_NetPacket(8, 8)
+	-- 	pack:writeUInt(8)
+	-- 	NetManager:send_packet(pack)
+	-- end
+	-- local c = _new_callback()
+	-- c:start(5,back_func)
+
 end
 
 -- init_instance("GameLogicCC")

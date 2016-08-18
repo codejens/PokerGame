@@ -1,7 +1,7 @@
 resourceHelper = {}
 local res_helpers = helpers.ResourceHelpers
 --不允许直接调用ResourceHelpers
-res_helpers:loadImageSet("ui/common/ui_common1.imageset")
+-- res_helpers:loadImageSet("ui/common/ui_common1.imageset")
 -- res_helpers:loadImageSet("ui/common/ui_common2.imageset")
 -- res_helpers:loadImageSet("ui/Login/ui_login1.imageset")
 helpers.ResourceHelpers = nil

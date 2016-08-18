@@ -137,7 +137,7 @@ end
 --socket连接的回调
 --参数：返回码|数据包|系统id|函数id|大小
 function NetManager.on_connect_success(  code,p, sysid, pid, size )
-	-- print("socket连接的回调：",code,p, sysid, pid, size)
+	print("socket连接的回调_state：",_state,code,p, sysid, pid, size)
 	if code == SocketDelegateProtocolScript.eOnCommuSucc then --连接成功
 		if _state == 1 then --连接登录服务器成功
 			--发协议(1)验证账号

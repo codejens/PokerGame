@@ -16,7 +16,7 @@ end
 
 function _new_callback( ... )
 	-- body
-	return callback:new(...)
+	return callback:create(...)
 end
 
 --new函数

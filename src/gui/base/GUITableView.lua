@@ -32,10 +32,12 @@ function GUITableView:create_by_layout(layout)
 	local dir_type = layout.dir_type or cc.SCROLLVIEW_DIRECTION_HORIZONTAL
 	local vertical_type = layout.vertical_type or cc.TABLEVIEW_FILL_TOPDOWN
 	local table_view = self(self:create(layout.size[1],layout.size[2]).core)
+	local item_size = layout.item_size or {80,80}
 	table_view:setPosition(layout.pos[1],layout.pos[2])
 	table_view:setDirection(dir_type)
 	table_view:setDelegate()
-	table_view.size = layout.size
+	table_view.item_size = item_size
+	-- table_view.size = layout.size
 	-- table_view:setVerticalFillOrder(vertical_type)
 	return table_view
 end
@@ -50,39 +52,46 @@ function GUITableView:numberOfCellsInTableView()
 	return self.max_num
 end
 
-function GUITableView:cellSizeForTable()
-	return self.size[1],self.size[2]
+function GUITableView:cellSizeForTable(p1,p2)
+	return self.item_size[1],self.item_size[2]
 end
 
 
-function GUITableView:tableCellAtIndex(p1,p2)
-	local cell = p1:dequeueCell()
+function GUITableView:tableCellAtIndex(table, idx)
+	local cell = table:dequeueCell()
 	local func = self.touch_func[cc.TABLECELL_SIZE_AT_INDEX]
 	if func then
-		func(cell,p2+1)
+		cell = func(cell,idx+1)
 	end
+	cell = cell or cc.TableViewCell:new()
 	for tag , callback in pairs(self.tag_touch) do
+		print("tag----------",tag)
 		local btn = cell:getChildByTag(tag)
-		local function touch_event_func(sender,eventType)
-			if eventType == ccui.TouchEventType.ended then
-				callback(p2+1)
+		if btn then
+			local function touch_event_func(sender,eventType)
+				-- if eventType == ccui.TouchEventType.ended then
+					callback(idx+1)
+				-- end
 			end
+			btn:addClickEventListener(touch_event_func)
 		end
-		btn:addTouchEventListener(touch_event_func)
 	end
 	return cell
 end
 
+function GUITableView:set_item_size(s_w,s_h)
+	self.size = {s_w,s_h}
+end
+
 function GUITableView:update(max_num)
 	self.max_num = max_num
-
-
 	if self.is_regist == false then
 		self.core:registerScriptHandler(bind(self.numberOfCellsInTableView,self),cc.NUMBER_OF_CELLS_IN_TABLEVIEW)
 		self.core:registerScriptHandler(bind(self.cellSizeForTable,self),cc.TABLECELL_SIZE_FOR_INDEX)
 		self.core:registerScriptHandler(bind(self.tableCellAtIndex,self),cc.TABLECELL_SIZE_AT_INDEX)
 		self.is_regist = true
 	end 
+	self:reloadData()
 end
 
 function GUITableView:addTagTouch(tag,func)
