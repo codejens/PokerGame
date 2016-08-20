@@ -20,6 +20,12 @@ function GameWin:__init()
 	self:get_data()
 	self:create_makers()
 	self:create_player_array()
+
+	local call = callback:new()
+	local function reset_view_pos()
+		self.view:setPosition(500,0)
+	end
+	call:start(1,reset_view_pos)
 end
 
 function GameWin:init(is_fini)
@@ -47,10 +53,15 @@ function GameWin:save_widget()
 	self.panel_1 = self:get_widget_by_name("panel_1")
 	self.winRoot:setSize(self.width,self.height)
 
-	local bg = SPanel:quick_create(0,0,-1,-1,"nopack/room_bg.jpg",false,self.winRoot,0)
+	-- local bg = SPanel:quick_create(0,0,-1,-1,"nopack/room_bg.jpg",false,self.winRoot,0)
+
+	-- local function test_func()
+		-- print("vvvvvvvvvvvvvvvvvv")
+	-- end
+	-- bg:set_click_func(test_func)
 	-- bg:setAnchorPoint(0.5,0.5)
 	self.btn_back:removeFromParentAndCleanup(true)
-	bg:addChild(self.btn_back)
+	self.winRoot:addChild(self.btn_back,99)
 	self.btn_back:setPosition(0,self.btn_back.layout.pos[2])
 	self.panel_1:setPosition(self.width/2-960/2,self.height/2-640/2)
 end
@@ -91,7 +102,7 @@ function GameWin:create_player(player_info)
 	}
 	print("player_info.index=",player_info.index)
 	local panel_player = SPanel:create_by_layout(layout)
-	self.panel_1:addChild(panel_player)
+	self.panel_1:addChild(panel_player,1)
 
 	--名字
 	local name = player_info.name

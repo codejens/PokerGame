@@ -168,8 +168,9 @@ function RoleModel:show_login_win(root)
 
 		-- UIManager:destroy_window("login_win")
 		-- RoleModel:destroy_login_win()
-		UIManager:show_window("main_hall_win")
-		
+		-- UIManager:show_window("main_hall_win")
+		-- MainHallWin("main_hall_win",)
+		UIManager:show_window("login_win")
 	end
 	-- _login_win:active(true)
 	self.password_changed = false

@@ -41,30 +41,29 @@ local _ui_half_width = _ui_width * 0.5
 local _ui_half_height = _ui_height * 0.5
 
 --定义大窗口与中形窗口坐标与位置
-local _big_win_info = { x = 10, y = 35, width = 917, height = 628, texture = 		UIPIC_WINDOWS_BG }
-local _mid_win_info = { x = 400, y = 48, width = 457, height = 607, texture =  		UIPIC_WINDOWS_BG }
-local _left_mid_win_info = { x = 3, y = 39, width = 457, height = 607, texture = 	UIPIC_WINDOWS_BG }
-local _right_mid_win_info = { x = 403, y = 39, width = 457, height = 607, texture = UIPIC_WINDOWS_BG }
+-- local _big_win_info = { x = 10, y = 35, width = 917, height = 628, texture = 		UIPIC_WINDOWS_BG }
+-- local _mid_win_info = { x = 400, y = 48, width = 457, height = 607, texture =  		UIPIC_WINDOWS_BG }
+-- local _left_mid_win_info = { x = 3, y = 39, width = 457, height = 607, texture = 	UIPIC_WINDOWS_BG }
+-- local _right_mid_win_info = { x = 403, y = 39, width = 457, height = 607, texture = UIPIC_WINDOWS_BG }
 
 --新风格界面 窗口坐标与位置
-local _left_mid_win_new = { x = 10, y = 35, grid = true, width = 457, height = 619, texture =   UIPIC_WINDOWS_BG }
-local _right_mid_win_new = { x = 401, y = 35, grid = true, width = 457, height = 619, texture = UIPIC_WINDOWS_BG }
-local _big_mid_win_new = { x = 35, y = 35, grid = true, width = 917, height = 640, texture =    UIPIC_WINDOWS_BG }
-
-
---天降雄师新窗口坐标和位置(等大家统一窗口大小了，就可以直接改前面的窗口大小，然后把引用下面变量的进行全局替换，note by guozhinan)
+-- local _left_mid_win_new = { x = 10, y = 35, grid = true, width = 457, height = 619, texture =   UIPIC_WINDOWS_BG }
+-- local _right_mid_win_new = { x = 401, y = 35, grid = true, width = 457, height = 619, texture = UIPIC_WINDOWS_BG }
+local _big_mid_win_new = { x = 35, y = 35, grid = true, width = 917, height = 640, texture = UIPIC_WINDOWS_BG }
+-- local _normall_mid_win = { x = 35, y = 35, grid = true, width = 917, height = 640, texture = "" }
 local _left_mid_win_info_lion = { x = 10, y = 10, grid = true,width = 435, height = 630, texture =   "",title_bg =UIPIC_COMMOM_title_bg }
 local _right_mid_win_info_lion = { x = 401-25, y = 10, grid = true,width = 500, height = 630, texture ="",title_bg =UIPIC_COMMOM_title_bg  }
-local _big_win_info_lion = { x = 30, y = 10, grid = true,width = 900, height = 630, texture = "",title_bg =UIPIC_COMMOM_title_bg  }
+-- local _big_win_info_lion = { x = 30, y = 10, grid = true,width = 900, height = 630, texture = "",title_bg =UIPIC_COMMOM_title_bg  }
 
 --窗口定义
-local _big_win = {x=10,y=10,grid=true,width = 960, height = 640,texture = ""}
-local _left_win = {x=10,y=10,grid=true,width = 470, height = 640,texture = ""}
-local _right_win = { x = 401-25, y = 10, grid = true,width = 460, height = 630, texture ="",title_bg =UIPIC_COMMOM_title_bg  }
-local _hui_win = {x=0,y=0,grid=true,width = _refWidth(1.0), height = _refHeight(1.0), texture = "nopack/xszy/zezhao1.png"}
+-- local _big_win = {x=10,y=10,grid=true,width = 960, height = 640,texture = ""}
+-- local _normall_win = {x=10,y=10,grid=true,width = 960, height = 640,texture = ""}
+-- local _left_win = {x=10,y=10,grid=true,width = 470, height = 640,texture = ""}
+-- local _right_win = { x = 401-25, y = 10, grid = true,width = 460, height = 630, texture ="",title_bg =UIPIC_COMMOM_title_bg  }
+-- local _hui_win = {x=0,y=0,grid=true,width = _refWidth(1.0), height = _refHeight(1.0), texture = "nopack/xszy/zezhao1.png"}
 --山海经继承老界面
-local old_right_win = {x = 300, y = 15, grid = true,width = 493, height = 621, texture ="" }
-local _big_win_info_win = { x = 40, y = 0, grid = true,width = 910, height = 615, texture = ""}
+-- local old_right_win = {x = 300, y = 15, grid = true,width = 493, height = 621, texture ="" }
+-- local _big_win_info_win = { x = 40, y = 0, grid = true,width = 910, height = 615, texture = ""}
 --初始化主界面标志位
 local _firstShowMainUI = true
 --主界面是否处于显示状态
@@ -92,31 +91,36 @@ local WINDOW_STYLE = {
 
 
 local _show_history_record = {}
+local _no_close_win = {
+	"mainhall_win",
+	"screen_notic_win",
+	"center_notic_win",
+	"screen_run_notic_win",
+}
+-- function UIManager:get_cur_win()
 
-function UIManager:get_cur_win()
+-- 	return  _current_left_window, _current_right_window, _current_all_window
+-- end
 
-	return  _current_left_window, _current_right_window, _current_all_window
-end
+-- function UIManager:get_big_win_create_info()
+-- 	return _big_mid_win_new
+-- end
 
-function UIManager:get_big_win_create_info()
-	return _big_mid_win_new
-end
+-- function UIManager:get_new_big_win_create_info()
+-- 	return _big_win_info_lion
+-- end
 
-function UIManager:get_new_big_win_create_info()
-	return _big_win_info_lion
-end
+-- function UIManager:get_min_win_create_info()
+-- 	return _mid_win_info_new
+-- end
 
-function UIManager:get_min_win_create_info()
-	return _mid_win_info_new
-end
+-- function UIManager:get_left_mid_win_create_info()
+-- 	return _left_mid_win_info
+-- end
 
-function UIManager:get_left_mid_win_create_info()
-	return _left_mid_win_info
-end
-
-function UIManager:get_right_mid_win_create_info()
-	return _right_mid_win_info_new
-end
+-- function UIManager:get_right_mid_win_create_info()
+-- 	return _right_mid_win_info_new
+-- end
 
 --UI根节点	
 local _ui_root = nil
@@ -129,7 +133,7 @@ local function _init()
 	_ui_dict = {
 
 	--登录框
-	login_win  = {class = loginWin, z = Z_ACTIVE_WINDOW, close_type = CLOSE_DESTORY , width = _refWidth(1.0), height = _refHeight(1.0) },	
+	login_win  = {class = loginWin,config = "login_win", texture = "nopack/login_bgp.jpg", z = Z_ACTIVE_WINDOW,appear_type = WINDOW_APPEAR_ALL, close_type = CLOSE_DESTORY , width = _refWidth(1.0), height = _refHeight(1.0) },	
 	--跑马灯
 	screen_notic_win = {class = ScreenNoticWin, x = 0, y = 0, z = Z_TOOLTIP+1 },
 	--主屏公告
@@ -140,15 +144,13 @@ local function _init()
 	--只有一句文字的对话框
 	normal_dialog = {class = NormalDialog,texture = nil,x = 235,y = 140, z =Z_DIALOG_START,width = 416,height=331, appear_type =WINDOW_DIALOG,grid=true},
 	--系统消息提示框
-	sysmsg_dialog = {class = SysMsgDialog, texture = "nopack/blocked.png", win_center = true, width = _refWidth(1.0), height = _refHeight(1.0), x = 0, y = 0, z = Z_TOOLTIP, appear_type = WINDOW_DIALOG},
+	sysmsg_dialog = {class = SysMsgDialog, texture = "nopack/blocked.png", width = _refWidth(1.0), height = _refHeight(1.0), x = 0, y = 0, z = Z_TOOLTIP, appear_type = WINDOW_DIALOG},
 		
-	main_hall_win = {config = "ue_mainhall_win",win_center = true,texture = _big_win.texture, class = MainHallWin, appear_type = WINDOW_APPEAR_ALL,  width = _refWidth(1.0), height = _refHeight(1.0),no_block = true },	
-	game_win = {config = "ue_game_win",win_center = true,texture = _big_win.texture, class = GameWin, appear_type = WINDOW_APPEAR_ALL, width = _refWidth(1.0), height = _refHeight(1.0) ,no_block = true},	
+	mainhall_win = {config = "ue_mainhall_win",texture = "nopack/hall_function_bg.jpg", class = MainHallWin, appear_type = WINDOW_APPEAR_ALL,  width = _refWidth(1.0), height = _refHeight(1.0)},	
+	game_win = {config = "ue_game_win",texture = _big_mid_win_new.texture, class = GameWin, appear_type = WINDOW_APPEAR_ALL, width = _refWidth(1.0), height = _refHeight(1.0) ,no_block = true},	
 	
-	room_list_win = {config = "ue_room_list_win",win_center = true,texture = _big_win.texture, class = RoomListWin, appear_type = WINDOW_APPEAR_ALL,  width = _refWidth(1.0), height = _refHeight(1.0),no_block = true },	
-
+	room_list_win = {config = "ue_room_list_win",texture = "nopack/chuji_bg.jpg", class = RoomListWin, appear_type = WINDOW_APPEAR_ALL,  width = _refWidth(1.0), height = _refHeight(1.0),no_block = true },	
 	}
-
 end
 
 --生成一个拖拽图标
@@ -183,9 +185,11 @@ local function close_window(name)
 	end
 	if UIManager:find_visible_window(name) then
 		local window = _ui_dict[name]
-		if window and window.close_type == CLOSE_DESTORY then
+		if window and (window.close_type == nil or window.close_type == CLOSE_DESTORY) then
+			print("destroy name=",name)
 			UIManager:destroy_window(name)
 		else
+			print("hide name=",name)
 			UIManager:hide_window(name)
 		end
 	end
@@ -246,71 +250,6 @@ local function bring_window_front(window, z_order)
 	_ui_root:addChild(window.view, z_order)
 end
 
---根据窗口信息放置窗口
-local function locate_window(window, info)
-	local final_x   = nil
-	local final_y   = nil
-	local reset_pos = false
-	if info.appear_type == WINDOW_APPEAR_LEFT then
-		if info.x ~= nil then
-			final_x = info.x
-		else
-			final_x = _left_mid_win_new.x
-		end
-		if info.y ~= nil then
-			final_y = info.y
-		else
-			final_y = _left_mid_win_new.y
-		end
-	elseif info.appear_type == WINDOW_APPEAR_RIGHT then
-		if info.x ~= nil then
-			final_x = info.x
-		else
-			final_x = _right_mid_win_new.x
-		end
-		if info.y ~= nil then
-			final_y = info.y
-		else
-			final_y = _right_mid_win_new.y
-		end
-	elseif info.appear_type == WINDOW_APPEAR_ALL then
-		if info.x ~= nil then
-			final_x = info.x
-		else
-			final_x = _right_mid_win_new.x
-		end
-		if info.y ~= nil then
-			final_y = info.y
-		else
-			final_y = _right_mid_win_new.y
-		end
-	elseif info.appear_type == WINDOW_DIALOG or info.appear_type == WINDOW_APPEAR_MIDDLE or info.appear_type == WINDOW_DIALOG_MODAL or info.appear_type == WINDOW_DIALOG_NOTMAIN then
-		if info.x ~= nil and info.y ~= nil then
-			final_x = info.x
-			final_y = info.y
-		else
-			reset_pos = true
-			if window ~= nil then
-				bring_window_center(window)
-			end
-		end
-	-- elseif info.appear_type == WINDOW_DIALOG_NOTMAIN then  -- dialog, 不显示主界UI
-	-- 	if info.x ~= nil and info.y ~= nil then
-	-- 		final_x = info.x
-	-- 		final_y = info.y
-	-- 	else
-	-- 		reset_pos = true
-	-- 		if window ~= nil then
-	-- 			bring_window_center(window)
-	-- 		end
-	-- 	end
-
-	end
-	if window ~= nil and reset_pos ~= true then
-		window:setPosition(final_x, final_y)
-	end
-end
-
 --自动生成窗口标题和关闭按钮
 local function create_title_and_close_button(window, window_name, window_info)
 	if window_info.appear_type then
@@ -362,6 +301,11 @@ function UIManager:init(root)
 	-- self:createWindowScreenCloser()
 	_init()
 	self._isWindowsVisible = true
+
+	UIManager:show_window("screen_notic_win")
+	UIManager:show_window("center_notic_win")
+	UIManager:show_window("screen_run_notic_win")
+
 end
 
 --创建窗口
@@ -424,6 +368,13 @@ function UIManager:destroy_window(window_name)
 		print("window nil name=",window_name)
 		return false
 	end
+	for _ , win_name in pairs(_no_close_win) do
+		if win_name == window_name then
+			print("win_name=",win_name)
+			return false
+		end
+	end
+	print("destroy_window window_name=",window_name)
 	_ui_windows[window_name] = nil
 
 	if _ui_windows_shown[window_name] ~= nil then
@@ -501,37 +452,37 @@ function UIManager:show_window( window_name ,is_touch_other_close)
 				send_message_to_java( jcode )
 			end
 	        --如果页面没有被顶掉只是被其他页面盖住
-	        local  win = UIManager:find_visible_window("chat_win")
-	        if win then
-	        	local  input_panel = win.chat_input_edit
-	        	    input_panel:set_can_record(true)
-	        	    input_panel:clear_chat_time()
-	        	    if input_panel.hitPanel then
-	                	input_panel.hitPanel:setIsVisible(false)
-	                	input_panel.hitPanel2:setIsVisible(false)
-	                	input_panel.hitPanel3:setIsVisible(false)
-	                	input_panel.hitPanel4:setIsVisible(false)
-	                end
-	                input_panel:set_cancel_isvisitable(false)
-	                --还原音量
-	                SoundManager:chat_back_effct(  )
-	        end
+	        -- local  win = UIManager:find_visible_window("chat_win")
+	        -- if win then
+	        -- 	local  input_panel = win.chat_input_edit
+	        -- 	    input_panel:set_can_record(true)
+	        -- 	    input_panel:clear_chat_time()
+	        -- 	    if input_panel.hitPanel then
+	        --         	input_panel.hitPanel:setIsVisible(false)
+	        --         	input_panel.hitPanel2:setIsVisible(false)
+	        --         	input_panel.hitPanel3:setIsVisible(false)
+	        --         	input_panel.hitPanel4:setIsVisible(false)
+	        --         end
+	        --         input_panel:set_cancel_isvisitable(false)
+	        --         --还原音量
+	        --         SoundManager:chat_back_effct(  )
+	        -- end
 
 	        --如果是组队状态按钮给其他页面顶掉
-	        local  win = UIManager:find_visible_window("menus_panel")
-	        if win then
-	        	    if win.hitPanel then
-	                	win.hitPanel:setIsVisible(false)
-	                	win.hitPanel2:setIsVisible(false)
-	                	win.hitPanel3:setIsVisible(false)
-	                	win.hitPanel4:setIsVisible(false)
-	                end
-	                win:clear_chat_time()
-	                win:set_can_record(true)
-	                win:set_cancel_isvisitable(false)
-	                --还原音量
-	                SoundManager:chat_back_effct(  )
-	        end
+	        -- local  win = UIManager:find_visible_window("menus_panel")
+	        -- if win then
+	        -- 	    if win.hitPanel then
+	        --         	win.hitPanel:setIsVisible(false)
+	        --         	win.hitPanel2:setIsVisible(false)
+	        --         	win.hitPanel3:setIsVisible(false)
+	        --         	win.hitPanel4:setIsVisible(false)
+	        --         end
+	        --         win:clear_chat_time()
+	        --         win:set_can_record(true)
+	        --         win:set_cancel_isvisitable(false)
+	        --         --还原音量
+	        --         SoundManager:chat_back_effct(  )
+	        -- end
 	    -- end
     end
     local is_view = false

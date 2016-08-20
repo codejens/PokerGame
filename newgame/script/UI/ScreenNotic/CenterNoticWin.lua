@@ -65,7 +65,7 @@ end
 
 
 function CenterNoticItem:__init(info, fontSize)
-	local temp_info = ChatModel:format_screen_and_center_notic_info( info )
+	local temp_info = SharedTools:format_screen_and_center_notic_info( info )
 	local label = CCZXLabel:labelWithText( 0, 0, temp_info, fontSize, ALIGN_LEFT )
 	local label_size = label:getSize()
 	local basepanel = CCBasePanel:panelWithFile( 0, 0, 1, 1, "")
@@ -100,7 +100,7 @@ end
 
 function CenterNoticItem:setInfo(info, fontSize, tPosY)
 	----print("CenterNoticItem:setInfo info = ",info)
-	local temp_info = ChatModel:format_screen_and_center_notic_info(info)
+	local temp_info = SharedTools:format_screen_and_center_notic_info(info)
 	--清空
 	local label = self.label
 	label:setText('')

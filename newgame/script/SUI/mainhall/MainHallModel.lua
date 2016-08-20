@@ -4,12 +4,12 @@ function MainHallModel:init()
 	print("MainHallModel:init")
 end
 
-function MainHallModel:show_mainhall_win()
+function MainHallModel:show_window()
 	UIManager:show_window("mainhall_win")
 end
 
-function MainHallModel:close_mainhall_win()
-	UIManager:hide_window("mainhall_win")
+function MainHallModel:close_window()
+	UIManager:destroy_window("mainhall_win")
 end
 
 local function player_leave(index)

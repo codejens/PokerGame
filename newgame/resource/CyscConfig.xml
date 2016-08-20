@@ -54,8 +54,8 @@
 <!--<entry_url>http://192.168.1.154:8082/base/entrance_list</entry_url>-->
 <platform_id>2</platform_id>
 <!-- 模拟器大小设置  -->
-<winWidth>1280</winWidth>
-<winHeight>720</winHeight>
+<winWidth>480</winWidth>
+<winHeight>320</winHeight>
 <!-- 策划模拟器大小设置  -->
 <designWinWidth>1136</designWinWidth>
 <designWinHeight>640</designWinHeight>

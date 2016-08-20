@@ -32,7 +32,7 @@ local _screen_run_notic_default_begin_pos_x = _screen_run_notic_size[1]
 super_class.ScreenRunNoticItem()
 ---------------------------------------
 function ScreenRunNoticItem:__init(info, fontsize)
-	local temp_info = ChatModel:format_screen_and_center_notic_info( info )
+	local temp_info = SharedTools:format_screen_and_center_notic_info( info )
 	temp_info = "#cffecba公告：" .. temp_info -- [1825]="#cff0000公告："
 	-- ----print("run screenrunnoticitem temp_info",temp_info)
 	local label = CCZXLabel:labelWithText( 0, 0, temp_info, fontsize, ALIGN_LEFT )
@@ -145,11 +145,7 @@ end
 ------------------------------
 function ScreenRunNoticWin:__init( window_name, textureName )
 	safe_release(self.view)
-	local temp_bg = Image:create( nil, 0, 0, 
-								  _screen_run_notic_size[1], 
-								  _screen_run_notic_size[2], 
-								  "sui/mainUI/system_msgBg.png", 
-								  600, 600 )
+	local temp_bg = SImage:quick_create(0,0,"sui/common/system_msgBg.png",nil,nil,true,_screen_run_notic_size[1],_screen_run_notic_size[2])
 
 	local x = (_relativeWidth(1.0) - _screen_run_notic_size[1]) * 0.5
 	self.view =  CCTouchPanel:touchPanel( x, _relativeHeight(0.76), 
@@ -211,14 +207,14 @@ function ScreenRunNoticWin:startEffect()
 	local scale = CCScaleTo:actionWithDuration(0.25,1.0,1.0);
 	self._bg_item:runAction(scale)
 
-	local cb = callback:new() 
-	local function callback_function()
-		self.effect = SEffectBuilder:create_a_effect(51 ,1, 0 )
-		self.effect:setAnchorPoint(CCPoint(0.5,0.5))
-		self.effect:setPosition(_screen_run_notic_size[1]/2,_screen_run_notic_size[2]/2 - 2)
-		self.view:addChild(self.effect)
-	end 
-	cb:start(2.5,callback_function)
+	-- local cb = callback:new() 
+	-- local function callback_function()
+	-- 	self.effect = SEffectBuilder:create_a_effect(51 ,1, 0 )
+	-- 	self.effect:setAnchorPoint(CCPoint(0.5,0.5))
+	-- 	self.effect:setPosition(_screen_run_notic_size[1]/2,_screen_run_notic_size[2]/2 - 2)
+	-- 	self.view:addChild(self.effect)
+	-- end 
+	-- cb:start(2.5,callback_function)
 
 end
 

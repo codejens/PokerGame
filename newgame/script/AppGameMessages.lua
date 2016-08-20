@@ -204,7 +204,6 @@ function AppMessages.OnKeyEvent(key, down)
 	if NPC then
 		NPC:set_dir(key, down)
 	end
-
 	if key == string.byte('B') and down then
 		debugEntityBB = not debugEntityBB
 		ZXEntity:enableDebugBoundingBox(debugEntityBB)
@@ -214,8 +213,8 @@ function AppMessages.OnKeyEvent(key, down)
 		-- test_effcet()
 	end
 
-	-- if UIManager then
-	-- 	local win = UIManager:find_visible_window("chat_win")
+	if UIManager then
+		local win = UIManager:find_visible_window("chat_win")
 	-- 	if not win then
 	-- 		if key == string.byte('A') and down then
 	-- 			UIManager:show_window("action_win")
@@ -225,11 +224,11 @@ function AppMessages.OnKeyEvent(key, down)
 	-- 	end
 
 	-- 	local win = UIManager:find_visible_window("action_win")
-	-- 	if key == string.byte('E') and down and not win then
-	-- 		require 'UIEditor/UIEditor'
-	-- 		UIEditor:toggle()
-	-- 	end
-	-- end
+		if key == string.byte('E') and down and not win then
+			require 'UIEditor/UIEditor'
+			UIEditor:toggle()
+		end
+	end
 
 	--F1
 	if key == 120 and down then

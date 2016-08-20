@@ -992,6 +992,7 @@ function UpdateManager:__reallyfinish()
 	require "utils/LuaEx"
 	require "utils/binder"
 	require "utils/Utils"
+	require "utils/SharedTools"
 	require "AppGameMessages"
 	require "ResourceManager"
 	if GetPlatform() == CC_PLATFORM_IOS then

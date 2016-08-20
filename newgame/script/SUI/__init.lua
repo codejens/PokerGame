@@ -12,6 +12,7 @@ end
 
 __init_sui[2] = function ()
 require "SUI/base/BasePage"
+require "SUI/login/SloginWin"
 -- require "SUI/UserEquipAndAttrWin/UserEquipAndAttrWin"
 -- require "SUI/UserEquipAndAttrWin/OtherUserEquipAndAttrWin"
 end

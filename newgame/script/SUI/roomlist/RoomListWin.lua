@@ -2,8 +2,8 @@
 super_class.RoomListWin(BaseEditWin)
 -- RoomListWin = simple_class(GUIWindow)
 
-function RoomListWin:__init()
-	print("RoomListWin:__init()")
+function RoomListWin:__init(name,texture)
+	print("RoomListWin:__init(),name,texture=",name,texture)
 	self:update("update_scroll")
 end
 
@@ -33,7 +33,7 @@ end
 function RoomListWin:update_scroll()
 	if self.scroll_room_list then
 		local max_count = #self.room_list_config
-		self.scroll_room_list:update(max_count) 
+		self.scroll_room_list:update(max_count)
 	end
 end
 
@@ -64,6 +64,7 @@ function RoomListWin:registered_envetn_func()
 
 	local function array_btn_main_room_func(main_id)
 		self._cur_select_main_id = main_id
+		self:set_new_view_bg()
 		self:update("update_scroll")
 	end
 	for main_id , btn in pairs(self.array_btn_main_room) do
@@ -80,6 +81,25 @@ function RoomListWin:create_scroll_cell(index)
 	return panel.view
 end
 
-function RoomListWin:destory()
+function RoomListWin:set_new_view_bg()
+	local path = ""
+	if self._cur_select_main_id == 3 then
+		--高级
+		path = "nopack/gaoji_bg.jpg"
+	else
+		path = "nopack/chuji_bg.jpg"
+	end
+	if self.last_bg_path == path then
+		return
+	end
+	self.last_bg_path = path
+	self:reset_view_bg()
+end
 
+function RoomListWin:reset_view_bg()
+	self.view:setTexture(self.last_bg_path)
+end
+
+function RoomListWin:destory()
+	
 end

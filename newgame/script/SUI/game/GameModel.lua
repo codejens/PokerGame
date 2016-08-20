@@ -19,7 +19,7 @@ end
 
 function GameModel:set_cur_room_data(data)
 	self.room_data = data
-	MainHallModel:close_mainhall_win()
+	-- MainHallModel:close_window()
 	self:show_win()
 end
 

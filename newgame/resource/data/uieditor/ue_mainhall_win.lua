@@ -1,7 +1,7 @@
 ue_mainhall_win = {
 	img_n="",
 	child={
-{	img_n="nopack/hall_function_bg.jpg",
+{	img_n="",
 	flip={	false,		false,	},
 	parent="win_root",
 	class="SPanel",

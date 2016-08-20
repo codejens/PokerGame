@@ -45,41 +45,9 @@ Z_SCREENMASK            = 99999			--最顶层的遮罩
 Z_KEYBOARD              = 100000		--最顶层的遮罩 再高一层，键盘层
 
 
-UIPIC_SCROLL_GRADIENT_FRONT = 'nopack/gradient.png'
 ----------------------------------------------------
 --道具Slot
 UIPIC_ITEMSLOT 		   = 'ui/lh_normal/item_bg2.png'
---道具禁用Slot
-UIPIC_ITEMSLOT_DISABLE = 'ui/common/wkq.png'
 --通用窗口底板
-UIPIC_WINDOWS_BG       = "nopack/item_cd.png"
---角色装备Slot
-UIPIC_EQ_SLOT 		   = 'ui/common/zbk-1.png'
-
-UI_GENIUS_ACTION = {0,0,11,0.2};
-
-UI_TRANSFORM_ACTION = {0,0,29,0.1};
---Tips Marco
-UI_TOOLTIPS_FONT_SIZE = 16
-UI_TOOLTIPS_RECT_WIDTH = 350			--tips 边框宽
-UI_TOOLTIPS_RECT_HEIGHT = 321			--tips 边框高
-UI_TOOLTIPS_RECT_NO_BUTTON_HEIGHT = 350 --tips 无按钮的边框高
-UI_TOOLTIPS_SPACER = 32					--横文字间隔
-UI_TOOLTIPS_BORDER = 12
-
-UI_TOOLTIPS_ITEM_BUTTON_HEIGHT = 55
---itemTipsView
-UI_TOOLTIPS_ITEM_DIALOG_WIDTH = 326 	--item 的描述宽度，加上2个UI_TOOLTIPS_BORDER正好330
-
---PetTipsView
-UI_TOOLTIPS_PET_ACTIONS = {0,0,17,0.16};
-UI_TOOLTIPS_PET_HEIGHT = 215
-UI_TOOLTIPS_PET_GAP = 20
-UI_TOOLTIPS_PET_ANIM_WIDTH = 370
-UI_TOOLTIPS_PET_ANIM_HEIGHT = 120
-
---EquipTipView
-UI_TOOLTIPS_EQUIP_FONT_SIZE = 20
-UI_TOOLTIPS_EQUIP_DIALOG_WIDTH = 326 	--item 的描述宽度
-
+UIPIC_WINDOWS_BG       = "nopack/hall_function_bg.jpg"
 

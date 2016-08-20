@@ -36,7 +36,7 @@ super_class.ScreenNoticItem()
 local _calculateScreenPos = UIScreenPos.calculateScreenPos
 
 function ScreenNoticItem:__init(info, fontSize)
-	local temp_info = ChatModel:format_screen_and_center_notic_info( info )
+	local temp_info = SharedTools:format_screen_and_center_notic_info( info )
 	----x--print("ScreenNoticItem:__init info",temp_info)
 	local x_border = 50
 	local y_border = 4
@@ -44,7 +44,7 @@ function ScreenNoticItem:__init(info, fontSize)
 	label:setAnchorPoint(CCPoint(0,0.5))
 	local label_size = label:getSize()
 	local basepanel = CCBasePanel:panelWithFile( 0, 0, label_size.width+x_border*2,
-	39,"sui/other/paomadeng.png",500,500)
+	39,"ui/common/paomadeng.png",500,500)
 	basepanel:addChild(label)
 	basepanel:setCurState(CLICK_STATE_DISABLE)
 	self.view = basepanel
