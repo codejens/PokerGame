@@ -1,0 +1,9 @@
+-- -----friendwin.lua
+-- -----HJH
+-- -----2013-2-17
+-- -----------
+-- super_class.FriendViewOtherData(Window)
+-- -----------
+-- -----------
+-- local _window_size 						= {width = 800, height = 480}
+-- local _

@@ -1,0 +1,11 @@
+TexturePacker:: warning: 
+TexturePacker:: warning: 
+TexturePacker:: warning: You are using some advanced features which will cause some sprites to 
+TexturePacker:: warning: be colored red in the sprite sheet.
+TexturePacker:: warning: 
+TexturePacker:: warning: List of advanced features you are using:
+TexturePacker:: warning:     - Output format other than RGBA8888
+TexturePacker:: warning:     - Dithering other than NearestNeighbour
+TexturePacker:: warning:     - Advanced algorithm (MaxRects)
+TexturePacker:: warning:     - Trimming / cropping
+TexturePacker:: warning:     - PngOptimization level not 0

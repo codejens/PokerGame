@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AppConfigRoot>
+<!--debug info-->
+<dbg_host>127.0.0.1</dbg_host>
+<dbg_port>8314</dbg_port>
+<!-- 不开启更新 -->
+<no_update>true</no_update>
+<!-- apk版本号 >= Version.xml的版本号时是否删除sdcard内容, true = 删除， false = 不删除 -->
+<fixStorage>true</fixStorage>
+<!-- 语言 -->
+<language>CN</language>
+<!-- APK包内的资源脚本版本号 -->
+<current_version>1.00.00</current_version>
+<!-- 引擎版本号 -->
+<engine_code>1</engine_code>
+<!-- 入口函数  -->
+<entryScript>xljs_010400</entryScript>
+<!-- 网络延时检测的间隔时间 单位秒 -->
+<net_delay_check>1.0</net_delay_check>
+<!-- 是否显示未开启服务器 -->
+<show_not_open_server>true</show_not_open_server>
+<!--维护状态可以进-->
+<can_login_maintain_server>true</can_login_maintain_server>
+<!-- 平台打点平台类型 -->
+<download_source>noplatform</download_source>
+<!-- 平台入口，包括登录和支付判断 -->
+<platformInterface>noplatform</platformInterface>
+<!-- 平台的渠道号 -->
+<lh_channel>test</lh_channel>
+<!-- 更新版本文件 -->
+<version_url>http://192.168.1.154/xljs_cgx/update/Android/010000/cgx_rpg_android_updatelist_010000.xml</version_url>
+<!-- 版本文件号 -->
+<package_sub_path>/010000/</package_sub_path>
+<!-- 是否是版署的包 -->
+<is_check_version>false</is_check_version>
+<is_test_version>false</is_test_version>
+<!--外网bi打点服务器-->
+<!-- <bi_server_url>http://119.254.95.164:8010/LoggerApp/LoggerServ</bi_server_url> -->
+<resourceFolder>resource</resourceFolder>
+<isJsonServerList>true</isJsonServerList>
+<default_body>frame/human/0/01000</default_body>
+<default_wing>frame/wing/1</default_wing>
+<target_platform_folder>/Android/</target_platform_folder>
+<!-- 内网测试服 连接设置  -->
+<develop_serverFilter>1,3,5,6,8,9,11,12,44,501,502,503,888,22,88,89,90,86,93,67,297,137,398,165,106,726,400</develop_serverFilter>
+<develop_cache_url>http://192.168.1.154/LionHeart/download</develop_cache_url>
+<develop_entry_url>http://192.168.1.154/hy/apple/entrance.jsp</develop_entry_url>
+<develop_package_url>http://192.168.1.154/LionHeart/update/Android</develop_package_url>
+<develop_server_list>http://192.168.1.154:8082/base/get_servlist</develop_server_list>
+<develop_log_url>http://192.168.1.154:8082/base/login</develop_log_url>
+<develop_register_url>http://192.168.1.154:8082/TencentOpen/siren_jianhui/get_servlist.jsp</develop_register_url>
+<package_url>http://192.168.1.154/xljs_cgx/update/Android/010000/</package_url>
+<!-- 入口  -->
+<!--<entry_url>http://192.168.1.154:8082/base/entrance_list</entry_url>-->
+<platform_id>2</platform_id>
+<!-- 模拟器大小设置  -->
+<winWidth>960</winWidth>
+<winHeight>640</winHeight>
+<!-- 策划模拟器大小设置  -->
+<designWinWidth>1136</designWinWidth>
+<designWinHeight>640</designWinHeight>
+<!-- 内外网设置  -->
+<outer_net>false</outer_net>
+</AppConfigRoot>

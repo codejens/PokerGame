@@ -1,0 +1,6 @@
+增加地图
+1. 联系程序修改config/SceneConfig 指定地图所在位置：服务器下载/APK
+2. 如果是从服务器下载，请提交到CDN并生成cache.xml
+修改地图
+1. 联系程序修改config/SceneConfig 指定地图所在位置：服务器下载/APK
+2. 如果是从服务器下载，请提交到CDN并生成cache.xml

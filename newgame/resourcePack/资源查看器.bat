@@ -1,0 +1,2 @@
+lua packCode/plistToImageset.wlua
+pause

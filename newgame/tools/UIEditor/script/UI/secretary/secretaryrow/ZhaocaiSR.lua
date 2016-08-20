@@ -1,0 +1,50 @@
+-- ZhaocaiSR.lua    secretary row
+-- created by lyl on 2013-5-29
+-- 经验
+
+
+super_class.ZhaocaiSR( SecretaryRow )  
+
+
+-- 参数：  row_mgr： 行的管理器 SecretaryRowMgr 类型,    
+--         row_key: 该行的key。管理器一般以它作为索引找到该行
+--         priority: 排序使用
+function ZhaocaiSR:__init( row_mgr, row_key, priority, pos_x, pos_y, width, height )
+	-- 响应 的更新事件的配置
+    self.update_type_t = {  }
+
+    
+end
+
+function ZhaocaiSR:init_show(  )
+    self:set_but_name( Lang.secretary[29] ) -- [1860]="前往招财"
+    self:update_all(  )
+end
+
+-- 按钮的回调事件， 子类根据自身需要重写
+function ZhaocaiSR:but_callback_func(  )
+    UIManager:show_window( "zhaocai_win" )
+end
+
+-- 更新显示数据
+function ZhaocaiSR:update_all(  )
+    local remain_count = ZhaoCaiModel:get_can_zhaocai_count(  )   -- 剩余招财次数
+    if remain_count > 0 then 
+        self:set_but_state( true )
+        self:change_state( SecretaryRow.ACTIVE )
+    else 
+        self:set_but_state( false )
+        self:change_state( SecretaryRow.INACTIVE )
+    end
+    self:set_notice_words( string.format( Lang.secretary[30], remain_count )  ) -- [30]="招财进宝剩余#cffff00%d#cffffff次"
+end
+
+-- 更新时间     子类需要重写
+function ZhaocaiSR:update( update_type )
+    -- print("ZhaocaiSR............update:::  ", update_type )
+    if update_type == "all"  then 
+        self:update_all( )
+    elseif update_type == "" then
+        
+    end
+end

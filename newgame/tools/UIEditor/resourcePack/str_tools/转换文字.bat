@@ -1,0 +1,2 @@
+lua StringFind.lua
+pause

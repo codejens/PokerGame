@@ -1,0 +1,43 @@
+-- BuffStruct.lua
+-- create by fjh on 2013-3-13
+-- Buff的数据结构
+
+super_class.BuffStruct()
+local index = 0;
+
+function BuffStruct:__init( pack )
+	--buff类型
+	self.buff_type 	= pack:readByte();
+	--buff的group id
+	self.buff_group = pack:readByte();
+	--buff的剩余时间
+	self.alive_time = pack:readInt();
+	--buff数值的类型
+	self.buff_value_type = pack:readByte();
+	
+	--buff数值
+	if self.buff_value_type == 0 then
+	elseif self.buff_value_type == 1 then
+		self.buff_value = pack:readChar();
+	elseif self.buff_value_type == 2 then
+		self.buff_value = pack:readByte();
+	elseif self.buff_value_type == 3 then
+		self.buff_value = pack:readShort();
+	elseif self.buff_value_type == 4 then
+		self.buff_value = pack:readWord();
+	elseif self.buff_value_type == 5 then
+		self.buff_value = pack:readInt();
+	elseif self.buff_value_type == 6 then
+		self.buff_value = pack:readUInt();
+	elseif self.buff_value_type == 7 then
+		self.buff_value = pack:readFloat();
+	end
+
+	--buff间隔
+	self.buff_interval = pack:readWord();
+	--buff名字
+	self.buff_name = pack:readString();
+	-- print("----------BuffStruct:38: buff_type, self.buff_group, self.buff_value_type, self.buff_value:: ",self.buff_type,self.buff_group,self.buff_value_type,self.buff_value,self.buff_name)
+	index = index + 1;
+	self.index = index ;
+end

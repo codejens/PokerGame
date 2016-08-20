@@ -1,0 +1,29 @@
+wujiangitemconfig = {[1] = { cardId = 1, itemId = 30560, }
+,[2] = { cardId = 2, itemId = 30561, }
+,[3] = { cardId = 3, itemId = 30562, }
+,[4] = { cardId = 4, itemId = 30563, }
+,[5] = { cardId = 5, itemId = 30564, }
+,[6] = { cardId = 6, itemId = 30565, }
+,[7] = { cardId = 7, itemId = 30566, }
+,[8] = { cardId = 8, itemId = 30567, }
+,[9] = { cardId = 9, itemId = 30568, }
+,[10] = { cardId = 10, itemId = 30569, }
+,[11] = { cardId = 11, itemId = 30570, }
+,[12] = { cardId = 12, itemId = 30571, }
+,[13] = { cardId = 13, itemId = 30572, }
+,[14] = { cardId = 14, itemId = 30573, }
+,[15] = { cardId = 15, itemId = 30574, }
+,[16] = { cardId = 16, itemId = 30575, }
+,[17] = { cardId = 17, itemId = 30576, }
+,[18] = { cardId = 18, itemId = 30577, }
+,[19] = { cardId = 19, itemId = 30578, }
+,[20] = { cardId = 20, itemId = 30579, }
+,[21] = { cardId = 21, itemId = 30580, }
+,[22] = { cardId = 22, itemId = 30581, }
+,[23] = { cardId = 23, itemId = 30582, }
+,[24] = { cardId = 24, itemId = 30583, }
+,[25] = { cardId = 25, itemId = 30584, }
+,[26] = { cardId = 26, itemId = 30585, }
+,[27] = { cardId = 27, itemId = 30586, }
+,[28] = { cardId = 28, itemId = 30587, }
+,}

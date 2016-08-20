@@ -1,0 +1,1 @@
+lua resourcePack/codes/getparam.wlua

@@ -1,0 +1,250 @@
+TexturePacker - 3.0.3
+(c) 2010-2012 by Andreas Loew - www.code-and-web.de
+Licensed to:            tonyweb
+Updates included until: 2999-01-01
+
+Usage: TexturePacker [options] [<*.png|gif|tif|jpg|swf|...>] [<imagefolder>] [<*.tps>*] 
+
+You can specify one or more .png or .tps files or directories for processing.
+   <folder>                   Recursively adds all known files in the sprite sheet
+   <*.tps>                    *.tps file created with TexturePackerPro (requires pro license)
+                              Additional set options override settings in the *.tps file
+   <*.swf>                    Flash requires pro license and --enable-swf-import
+   <images>                   Image formats, supported: 
+                                     bmp       Bitmap
+                                     gif       Graphics Interchange Format
+                                     ico       Icon (Windows)
+                                     jpeg      Joint Photographic Experts Group
+                                     jpg       Joint Photographic Experts Group
+                                     mng       Multiple-image Network Graphics
+                                     pbm       Portable Bitmap
+                                     pgm       Portable Gray Map
+                                     pkm       PKM file format (etc1)
+                                     png       Portable Network Graphics
+                                     ppm       Netpbm color image format
+                                     psd       Photoshop image format
+                                     pvr       PowerVR image format
+                                     pvr.ccz   PowerVR image format (zlib)
+                                     pvr.gz    PowerVR image format (gz)
+                                     pvrtc     PowerVR image format
+                                     swf       Flash
+                                     tga       Targa image format
+                                     tif       Tagged Image File Format
+                                     tiff      Tagged Image File Format
+                                     xbm       X Pixmap
+                                     xpm       Image format
+
+Options:
+  --help                      Display help text
+  --version                   Print version information
+  --gui                       Launch in with graphical user interface
+
+  Output:
+  --sheet <filename>          Name of the sheet to write, see texture-format for formats available
+  --texture-format <id>       Sets the format for the textures.
+                              The format type is automatically derived from the sheet's file name
+                              if possible.
+                              Available formats:
+                                         png - PNG (32bit)
+                                        pvr2 - PowerVR Texture Format, Format Version 2
+                                      pvr2gz - PowerVR Texture Format, Format Version 2, compressed with gzip
+                                     pvr2ccz - PowerVR Texture Format, Format Version 2, compressed with zlib, cocos2d header
+                                         jpg - JPG image format, lossy compression, no transparency
+                                         bmp - 24 bit BMP
+                                         tga - Targa Image Format
+                                        tiff - Tagged Image File Format
+                                         pkm - PKM image format, ETC1 compression
+                                   ppm_ascii - Netpbm color image format, ascii version
+                                  ppm_binary - Netpbm color image format, binary version
+
+  --data <filename>           Name of the data file to write
+
+  --format <format>           Format to write, default is cocos2d
+                              Available formats:
+                                  andengine           Format for AndEngine
+                                  agk                 Format for AppGameKit
+                                  batterytech         BatteryTech Exporter
+                                  bhive               Format for BHive
+                                  cegui               Format for CEGUI / OGRE
+                                  cocos2d             plist format for cocos2d
+                                  cocos2d-0.99.4      plist format for 'old' cocos2d
+                                  cocos2d-original    plist format for 'old' (original version)
+                                  corona-imagesheet   Exporter for Corona SDK using new image sheet format.
+                                  corona              lua file for Corona TM SDK
+                                  css                 css format for web design
+                                  easaljs             Exporter for EaselJS. Animations not yet supported.
+                                  xml                 Generic XML format
+                                  gideros             Format for Gideros
+                                  json-array          text file for json/html as array
+                                  json                text file for json/html as hash
+                                  kwik2               Exporter for Kwik 2 using new image sheet format.
+                                  libgdx              text file for lib GDX
+                                  libgdx              text file for lib GDX
+                                  moai                Format for Moai
+                                  plain               Exporter to demonstrate how to crate your own exporters
+                                  slick2d             Format for Slick2D
+                                  sparrow             xml file for Sparrow/Starling SDK
+                                  unity               text file for Unity3D, json format but .txt ending
+
+  --auto-sd                   Automatically creates additional standard definition file (50% scale)
+                              Requires data and texture file name to end with @2x or -hd
+                              e.g. sheet-hd.plist 
+                              This is a convenience function for compatibility with TexturePacker 2.x.x
+                              For more powerfull options see section AutoSD below
+  --texturepath <path>        Adds the path to the texture file name stored in the data file.
+                              Use this if your sprite sheets are not stored in another folder than your data files.
+  --trim-sprite-names         Removes .png, .bmp and .jpg from sprite names
+  --replace <regexp>=<string> Replaces matching parts of the sprite's name with <string>
+                              Uses full regular expressions, make sure to escape the expression
+  --ignore-files <regexp>     Ignores all images fitting the given pattern (may be used several times)
+                              You can use * and ?, make sure to escape the wildcards when working with bash
+
+  AutoSD:
+  --main-extension <string>   This is the part of the file name that is removed from the main file name when
+                              creating the auto-sd variants. Usual values are @4x, @2x, -hd, -ipadhd
+  --autosd-variant <expr>     Adds an AutoSD-Variant. Format of the expr 
+                              <scale>:<extension>[:allowfraction][:<width>:[<height>]]
+                                 <scale>         floating point value, e.g. 0.5
+                                 <extension>     value that will replace the main extension in the file name, e.g. @2x
+                                 allowfraction   allow floating point values for this scaling if no common
+                                                 base factor can be calculated (force identical layout)
+                                 <width>         optional maximum width of the texture, default is 2048
+                                 <height>        optional maximum height of the texture
+                                                 if not present the same value as width will be used
+  --force-identical-layout    Preserves the layout across multiple autosd variants
+                              Might require enabling allowfraction on some variants of no common
+                              base factor can be derived
+
+  Algorithm settings:
+  --algorithm <name>          Choose algorithm
+                                  MaxRects        Powerful packing algorithm (extended)
+                                  Basic           Simple algorithm for tilemaps and atlases (free)
+    MaxRects
+      --maxrects-heuristics   Heuristic for MaxRects algorithm
+                                             Best - Best
+                                     ShortSideFit - ShortSideFit
+                                      LongSideFit - LongSideFit
+                                          AreaFit - AreaFit
+                                       BottomLeft - BottomLeft
+                                     ContactPoint - ContactPoint
+
+    Basic
+      --basic-sort-by         Sort order for the sprite list
+                                             Best - Best
+                                             Name - Name
+                                            Width - Width
+                                           Height - Height
+                                             Area - Area
+                                    Circumference - Circumference
+      --basic-order           Sorting direction
+                                        Ascending - Ascending
+                                       Descending - Descending
+
+
+  Dimensions and layout:
+  --width <int>               Sets fixed width for texture
+  --height <int>              Sets fixed height for texture
+  --max-width <int>           Sets the maximum width for the texture in auto size mode, default is 2048
+  --max-height <int>          Sets the maximum height for the texture in auto size mode, default is 2048
+  --max-size <int>            Sets the maximum width and height for the texture in auto size mode, default is 2048
+  --size-constraints <value>  Restrict sizes
+                                              POT - Power of 2 (2,4,8,16,32,...)
+                                          AnySize - Minimum size
+                                             NPOT - Any size but power of 2
+  --force-squared             Force squared texture
+  --force-word-aligned        Forces word alignment of the texture
+  --pack-mode <mode>          Optimization mode: Fast, Good, Best
+
+  Padding and rotation:
+  --shape-padding <int>       Sets a padding around each shape, value is in pixels, default is 2
+  --border-padding <int>      Sets a padding around each the border, value is in pixels, default is 2
+  --padding <int>             Sets a padding around each shape, and to the border, value is in pixels, default is 2
+  --inner-padding <int>       Adds an inner padding around the sprite. The padding is added to the sprite's size, default 0
+  --enable-rotation           Enables rotation of sprites (overriding file format's defaults)
+  --disable-rotation          Disables rotation of sprites (overriding file format's defaults)
+  --trim-mode <value>         Remove transparent parts of a sprite to shrink atlas size and speed up rendering
+                                             None - Keep transparent pixels
+                                             Trim - Remove transparent pixels, use original size.
+                                             Crop - Remove transparent pixels, use trimmed size, flush position.
+                                      CropKeepPos - Remove transparent pixels, use trimmed size, keep position.
+  --trim-threshold <int>      Trim alpha values under the threshold value 1..255, default is 1
+  --disable-auto-alias        Disables automated alias creation
+
+  Graphics optimization (extended only):
+  --opt <pixelformat>         Optimized output for given pixel formats. Supported formats are:
+                                         RGBA8888 - 32bit, 8bit/channel, 8bit transparency
+                                         BGRA8888 - 32bit, 8bit/channel, 8bit transparency
+                                         RGBA4444 - 16bit, 4bit/channel, 4bit transparency
+                                           RGB888 - 24bit, 8bit/channel, no transparency
+                                           RGB565 - 16bit, 5bit red, 6bit green, 5bit blue, no transparancy
+                                         RGBA5551 - 16bit, 5bit/channel, 1bit transparancy
+                                         RGBA5555 - 20bit, 5bit/channel, 5bit transparancy
+                                           PVRTC2 - PVRTC compression, 2bit per pixel, PVR files only
+                                           PVRTC4 - PVRTC compression, 4bit per pixel, PVR files only
+                                   PVRTC2_NOALPHA - PVRTC compression, 2bit per pixel, PVR files only
+                                   PVRTC4_NOALPHA - PVRTC compression, 4bit per pixel, PVR files only
+                                            ALPHA - 8bit transparency
+                                  ALPHA_INTENSITY - 8bit intensity, 8bit transparency
+                                             ETC1 - ETC1 compression (PKM file only)
+  --dither-none-nn            No dithering, nearest neighbour (non linear color reduction, may lead to lower contrast), default
+  --dither-none-linear        No dithering, linear color reduction, better contrast, but may be darker than original
+  --dither-fs                 Enables Floyd-Steinberg dithering without alpha for color reduction
+  --dither-fs-alpha           Enables Floyd-Steinberg dithering with alpha for color reduction
+  --dither-atkinson           Enables Atkinson dithering without alpha for color reduction
+  --dither-atkinson-alpha     Enables Atkinson dithering with alpha for color reduction
+  --background-color <rrggbb> Set solid background color, default is none which is transparent
+                              The value is a tuple of 3 hexadezimal digit pairs, each pair represents
+                              a color channel in order red, green, blue, E.g. ff0000 for red, ffffff for white
+  --jpg-quality <value>       Sets the quality for jpg export: -1 for default, 0..100 where 0 is low quality
+  --flip-pvr                  Flips PVR files vertically (used for unity framework)
+  --premultiply-alpha         Premultiply alpha values (shoud be used with PVRs for cocos2d)
+  --dpi <value>               Set dpi for output image (default is 72)
+  --heuristic-mask            Removes equal colored pixels from the border of sprites. Creating a transparency mask 
+  --png-opt-level <value>     Optimization level for optipng based compressing (0=off, 7=extreme), default is 2
+                              on sprites which use one unique color as transparent color.
+
+Additional options:
+  --enable-swf-import         Enables import of .swf files (requires pro license)
+
+  --reduce-border-artifacts   Removes dark shadows around sprites
+  --extrude <int>             Extrudes the sprites by given value of pixels to fix flickering problems in tile maps
+  --scale <float>             Scales all images before creating the sheet. E.g. use 0.5 for half size
+  --scale-mode <mode>         Use mode for scaling:
+                                      Smooth - Smooth
+                                        Fast - Fast (Nearest Neighbor)
+                                     Scale2x - Scale2x (fixed 2x upscaling)
+                                     Scale3x - Scale2x (fixed 3x upscaling)
+                                     Scale4x - Scale4x (fixed 4x upscaling)
+                                       Eagle - Eagle2x (fixed 2x upscaling)
+                                        Hq2x - Hq2x (fixed 2x upscaling)
+  Additional settings for AndEngine:
+  --andengine-java <filename>          File name for the java definitions
+  --andengine-packagename <name>       Package name for the java definitions
+  --andengine-wraps <Clamp|Repeat>     Texture wrapping parameter (see opengl/andengine documentation)
+  --andengine-wrapt <Clamp|Repeat>     Texture wrapping parameter (see opengl/andengine documentation)
+  --andengine-minfilter <name>         Min filter (Nearest, Linear, LinearMipmapLinear, LinearMipmapNearest, NearestMipmapLinear, NearestMipmapNearest)
+  --andengine-magfilter <name>         Mag filter (MagNearest, MagLinear)
+
+  Debugging:
+  --shape-debug               Creates boxes around shapes for debugging
+  --verbose                   Be verbose
+  --quiet                     No output except for errors
+  --license-info              Prints information about the currenty linstalled license
+
+
+Examples:
+
+  TexturePacker assets/*.png
+        creates out.plist and out.png from all png files in assets
+        trimming all files and creating a texture with max. 2048x2048px 
+
+  TexturePacker --data main-hd.plist --format cocos2d --sheet main-hd.png assets/*.png
+        creates main-hd.plist and main-hd.png from all png files in assets
+        trimming all files and creating a texture with max. 2048x2048px 
+
+  TexturePacker --scale 0.5 --max-size 1024 --data main-sd.plist --format cocos2d --sheet main-sd.png assets/*.png
+        creates main-sd.plist and main-sd.png from all png files in assets
+        scaling all images to 50%, trimming all files and creating 
+        a texture with max. 1024x1024px 
+
+

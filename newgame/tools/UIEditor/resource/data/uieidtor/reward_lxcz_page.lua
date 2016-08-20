@@ -1,0 +1,81 @@
+reward_lxcz_page = {
+	img_n="",
+	child={
+{	img_n="sui/common/panel5.png",
+	flip={	false,		false,	},
+	parent="win_root",
+	class="SPanel",
+	is_nine=true,
+	name="panel_leveling",
+	size={	"637",
+	"525",
+},
+	isVisible=false,
+	child={
+{	img_n="nopack/reward/13.png",
+	flip={	false,		false,	},
+	parent="panel_leveling",
+	class="SPanel",
+	is_nine=true,
+	name="panel_1",
+	size={	"628",
+	"318",
+},
+	child={
+{	str="创角N天内，每天充值6元即可获得奖励，连续充值7天，可获得特殊坐骑-布偶猫。",
+	img_n="",
+	parent="panel_1",
+	class="STextArea",
+	is_nine=true,
+	name="text_1",
+	zOrder=1,		pos={	"10",
+	"70",
+},
+	size={	"350",
+	"50",
+},
+},
+},
+	zOrder=1,		pos={
+"5",
+
+"280",
+},
+},
+
+{	img_n="",
+	parent="panel_leveling",
+	class="SScroll",
+	is_nine=true,
+	scroll_type=2,		size={	"628",
+	"270",
+},
+	name="scroll_1",
+	zOrder=1,		pos={	"5",
+	"5",
+},
+},
+},
+	zOrder=1,		pos={
+"0",
+
+"0",
+},
+},
+},
+	class="SPanel",
+	is_nine=true,
+	name="win_root",
+	size={
+"637",
+
+"525",
+},
+	parent="ui_root",
+	zOrder=1,		pos={
+"0",
+
+"0",
+},
+
+}

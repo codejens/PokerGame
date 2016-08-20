@@ -1,0 +1,150 @@
+normal_tips = {
+	size={	950,		630,	},
+	img_n="",
+	name="win_root",
+	child={
+{	img_n="sui/common/win_panel.png",
+	flip={	false,		false,	},
+	parent="win_root",
+	class="SPanel",
+	is_nine=true,
+	name="panel_1",
+	pos={	253,		182,	},
+	zOrder=1,		child={
+{	img_n="sui/common/little_win_title_bg.png",
+	flip={	false,		false,	},
+	parent="panel_1",
+	class="SPanel",
+	is_nine=true,
+	name="panel_2",
+	pos={	-23,		211,	},
+	zOrder=2,		child={
+{	img_n="sui/common/close.png",
+	name="btn_close",
+	pos={	393,		-17,	},
+	parent="panel_2",
+	class="SButton",
+	zOrder=1,		size={	"66",
+	"75",
+},
+},
+},
+	size={
+"484",
+
+"53",
+},
+},
+
+{	img_n="sui/common/win_down.png",
+	flip={	false,		false,	},
+	parent="panel_1",
+	class="SPanel",
+	is_nine=true,
+	name="panel_3",
+	pos={	-12,		-4,	},
+	zOrder=1,		size={	"466",
+	"10",
+},
+},
+
+{	str="#c4d2308再次通关副本将不获得奖励，是否继续？",
+	name="show_txt",
+	parent="panel_1",
+	align="2",
+	class="SLabel",
+	fontsize="18",
+	pos={	230,		143,	},
+},
+
+{	child={
+{	str="#cF2F1E7取消",
+	name="label_left",
+	parent="cancel_btn",
+	align="2",
+	class="SLabel",
+	fontsize="24",
+	pos={	68,		14,	},
+},
+},
+	img_n="sui/common/btn_1.png",
+	name="cancel_btn",
+	pos={
+37,	
+18,	},
+	parent="panel_1",
+	class="SButton",
+	zOrder=1,		size={
+"139",
+
+"57",
+},
+},
+
+{	child={
+{	str="#cF2F1E7确定",
+	name="label_right",
+	parent="yes_btn",
+	align="2",
+	class="SLabel",
+	fontsize="24",
+	pos={	71,		14,	},
+},
+},
+	img_n="sui/common/btn_1.png",
+	name="yes_btn",
+	pos={
+270,	
+18,	},
+	parent="panel_1",
+	class="SButton",
+	zOrder=1,		size={
+"139",
+
+"57",
+},
+},
+
+{	child={
+{	str="#cF2F1E7确定",
+	name="label_mid",
+	parent="yes2_btn",
+	align="2",
+	class="SLabel",
+	fontsize="24",
+	pos={	"71",
+	"14",
+},
+},
+},
+	img_n="sui/common/btn_1.png",
+	name="yes2_btn",
+	pos={
+"161",
+
+"18",
+},
+	parent="panel_1",
+	class="SButton",
+	zOrder=1,		size={
+"139",
+
+"57",
+},
+},
+},
+	size={
+"442",
+
+"264",
+},
+},
+},
+	parent="ui_root",
+	class="SPanel",
+	is_nine=true,
+	pos={
+5,	
+5,	},
+
+}

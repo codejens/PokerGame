@@ -1,0 +1,104 @@
+-- ----HJH
+-- ----2013-1-10
+-- ------------------角色名字选择弹出界面
+-- require "model/ChatMode/ChatNameSelectMode"
+-- ------------------
+-- local _nine_grid_size						= CCDirector:sharedDirector():getWinSize().width
+-- local role_select_btn_file 					= "ui/common/nine_grid_bg.png"
+-- local role_select_btn_info 					= {"窗口私聊","查看资料","复制名称", "邀请组队", "加为好友","赠送鲜花"}
+-- local role_select_btn_size 					= {width = 88, height = 25}
+-- local role_select_begin_msg_index 			= 1000
+-- local role_select_btn_offsex 				= 5
+-- local _select_bnt 							= nil
+-- local _name_select_info						= nil
+-- ------------------
+-- super_class.ChatNameSelect(Window)
+-- ------------------arg:name
+-- function ChatNameSelect:initInfo(arg)
+-- 	--print(" run chat name select init info:",arg[1], arg[2], arg[3], arg[4], arg[5], arg[6])
+-- 	_name_select_info = arg
+-- 	--print(":::",arg[3],EntityManager:get_player_avatar().name)
+-- 	if arg[3] ==  EntityManager:get_player_avatar().name then
+-- 		_select_bnt[1]:setIsVisible(false)
+-- 		_select_bnt[2]:setIsVisible(false)
+-- 		_select_bnt[3]:setIsVisible(true)
+-- 		_select_bnt[4]:setIsVisible(false)
+-- 		_select_bnt[5]:setIsVisible(false)
+-- 		_select_bnt[6]:setIsVisible(false)
+-- 		--_select_bnt[7]:setIsVisible(false)
+-- 	else
+-- 		_select_bnt[1]:setIsVisible(true)
+-- 		_select_bnt[2]:setIsVisible(true)
+-- 		_select_bnt[3]:setIsVisible(true)
+-- 		_select_bnt[4]:setIsVisible(true)
+-- 		_select_bnt[5]:setIsVisible(true)
+-- 		_select_bnt[6]:setIsVisible(true)
+-- 		--_select_bnt[7]:setIsVisible(true)
+-- 	end
+-- end
+-- ------------------
+-- function ChatNameSelect:create_panel(fathernPanel, x, y, width, height)
+-- 	local father_panel = fathernPanel
+-- 	--local base_panel = CCBasePanel:panelWithFile(x, y, width, height, bg, _nine_grid_size, _nine_grid_size)
+-- 	self.view:setMessageIndex(role_select_begin_msg_index)
+-- 	----
+-- 	local btn_star_pos = {x = (width - role_select_btn_size.width) / 2 , y = height - role_select_btn_size.height - role_select_btn_offsex}
+-- 	local btn_empty_space = (height - role_select_btn_size.height - role_select_btn_offsex * 2) / (#role_select_btn_info - 1)
+-- 	----
+-- 	local select_bnt = {}
+-- 	for i = 1, #role_select_btn_info do
+-- 		select_bnt[i] = CCTextButton:textButtonWithFile(btn_star_pos.x, btn_star_pos.y, role_select_btn_size.width, role_select_btn_size.height, role_select_btn_info[i], role_select_btn_file, _nine_grid_size, _nine_grid_size)
+-- 		select_bnt[i]:setMessageIndex(role_select_begin_msg_index + i)
+-- 		self.view:addChild(select_bnt[i])
+-- 		btn_star_pos.y = btn_star_pos.y - btn_empty_space
+-- 	end
+-- 	_select_bnt = select_bnt
+-- 	----
+-- 	local function select_btn_fun(eventType, arg, msgid)
+-- 		if eventType == nil or arg == nil or msgid == nil then 
+-- 			return false
+-- 		end
+-- 		if eventType == TOUCH_BEGAN then
+-- 			return true
+-- 		elseif eventType == TOUCH_MOVED then
+-- 			return true
+-- 		elseif eventType == TOUCH_ENDED then 
+-- 			return true
+-- 		elseif eventType == TOUCH_CLICK or eventType == TOUCH_DOUBLE_CLICK then
+-- 			father_panel:setChatInputInsertBoxIconHide(false)
+-- 			if msgid == role_select_begin_msg_index + 1 then 				-----private chat
+-- 				ChatNameSelectMode:run_private_chat(_name_select_info[3], _name_select_info[9], _name_select_info[7], _name_select_info[8], _name_select_info[4], _name_select_info[5])
+-- 			elseif msgid == role_select_begin_msg_index + 2 then 			-----see info
+-- 					ChatMode:run_private_chat_view_other_btn_fun(nil, _name_select_info[4], _name_select_info[3])
+-- 			elseif msgid == role_select_begin_msg_index + 3 then 			-----copy name
+-- 				father_panel:setIndexPanelVisible(ChatConfig.WinType.TYPE_CHAT_NAME_SELECT, false)
+-- 				ChatNameSelectMode:run_copy_name(_name_select_info[3])
+-- 			elseif msgid == role_select_begin_msg_index + 4 then 			-----invite to group
+
+-- 			-- elseif msgid == role_select_begin_msg_index + 5 then 			-----business 
+
+-- 			elseif msgid == role_select_begin_msg_index + 5 then 			-----add friend
+-- 				ChatMode:run_private_chat_add_friend_bnt_fun(_name_select_info[4], _name_select_info[3])
+-- 				father_panel:setIndexPanelVisible(ChatConfig.WinType.TYPE_CHAT_NAME_SELECT, false)
+-- 			elseif msgid == role_select_begin_msg_index + 6 then 			-----send flower
+-- 				ChatNameSelectMode:run_send_flower(_name_select_info[3])
+-- 			end
+-- 			return true
+-- 		end
+-- 	end
+-- 	----
+-- 	for i = 1, #role_select_btn_info do
+-- 		select_bnt[i]:registerScriptHandler(select_btn_fun)
+-- 	end
+-- 	----
+-- end	
+
+-- function ChatNameSelect:__init(windowName, file, x, y , width, height, fathernPanel)
+-- 	-- 初始化构建控件
+--     self:create_panel(fathernPanel, x, y, width, height)
+-- end
+
+-- -- --UIManager使用来创建LoginWin
+-- -- function ChatNameSelect:create(file, x, y, width, height, fathernpanel)
+-- -- 	return ChatNameSelect(file, x, y, width, height, fathernpanel)
+-- -- end
