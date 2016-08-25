@@ -21,11 +21,11 @@ function GameWin:__init()
 	self:create_makers()
 	self:create_player_array()
 
-	local call = callback:new()
-	local function reset_view_pos()
-		self.view:setPosition(500,0)
-	end
-	call:start(1,reset_view_pos)
+	-- local call = callback:new()
+	-- local function reset_view_pos()
+	-- 	self.view:setPosition(0,0)
+	-- end
+	-- call:start(1,reset_view_pos)
 end
 
 function GameWin:init(is_fini)
@@ -52,7 +52,7 @@ function GameWin:save_widget()
 	self.winRoot = self:get_widget_by_name("win_root")
 	self.panel_1 = self:get_widget_by_name("panel_1")
 	self.winRoot:setSize(self.width,self.height)
-
+	-- self.winRoot:setPosition(0,320)
 	-- local bg = SPanel:quick_create(0,0,-1,-1,"nopack/room_bg.jpg",false,self.winRoot,0)
 
 	-- local function test_func()
@@ -64,6 +64,7 @@ function GameWin:save_widget()
 	self.winRoot:addChild(self.btn_back,99)
 	self.btn_back:setPosition(0,self.btn_back.layout.pos[2])
 	self.panel_1:setPosition(self.width/2-960/2,self.height/2-640/2)
+	-- self.panel_1:setAnchorPoint(0.5,0.5)
 end
 
 --创建主/庄家
